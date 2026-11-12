@@ -1,0 +1,2977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Living Evergreen Forest Ecosystem</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    @keyframes sunPulse {
+      0%, 100% { transform: scale(1); opacity: 0.45; }
+      50% { transform: scale(1.08); opacity: 0.65; }
+    }
+
+    @keyframes cloudDrift {
+      0% { transform: translateX(-220px); }
+      100% { transform: translateX(1220px); }
+    }
+
+    @keyframes sunbeamSway {
+      0%, 100% { opacity: 0.14; transform: skewX(-6deg) translateX(0px); }
+      50% { opacity: 0.24; transform: skewX(-4deg) translateX(14px); }
+    }
+
+    @keyframes waterRipple {
+      0%, 100% { opacity: 0.25; transform: scaleX(0.95); }
+      50% { opacity: 0.8; transform: scaleX(1.08); }
+    }
+
+    @keyframes floraSway {
+      0%, 100% { transform: rotate(-2.5deg); }
+      50% { transform: rotate(2.8deg); }
+    }
+
+    .sun-halo {
+      transform-origin: center;
+      animation: sunPulse 8s ease-in-out infinite;
+    }
+
+    @keyframes starTwinkle {
+      0%, 100% { opacity: 0.25; transform: scale(0.85); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    .star-twinkle {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: starTwinkle 3.6s ease-in-out infinite;
+    }
+
+    .cloud-drift-1 { animation: cloudDrift 95s linear infinite; }
+    .cloud-drift-2 { animation: cloudDrift 125s linear infinite; animation-delay: -45s; }
+
+    .sunbeam {
+      transform-origin: top center;
+      animation: sunbeamSway 9s ease-in-out infinite;
+    }
+
+    .water-shimmer {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: waterRipple 3.8s ease-in-out infinite;
+    }
+
+    .sway {
+      transform-box: fill-box;
+      transform-origin: bottom center;
+      animation: floraSway 4.2s ease-in-out infinite;
+    }
+
+    .animal-interactive {
+      cursor: pointer;
+    }
+
+    .animal-interactive:hover {
+      filter: drop-shadow(0 0 6px rgba(253, 224, 71, 0.55));
+    }
+
+    .animal-selected-ring {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: sunPulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes cardPopIn {
+      0% { opacity: 0; transform: translateY(10px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .inspector-card-enter {
+      animation: cardPopIn 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+</head>
+<body class="min-h-screen w-full bg-stone-950 flex flex-col items-center justify-center p-3 sm:p-6 overflow-x-hidden select-none">
+
+  <!-- Larger 1:1 Square Container (max-width: 900px, aspect-ratio: 1 / 1) -->
+  <main id="ecosystem-stage" class="w-full max-w-[min(94vw,900px)] aspect-square relative rounded-3xl overflow-hidden shadow-[0_30px_80px_-15px_rgba(0,0,0,0.9)] ring-1 ring-emerald-200/15 bg-emerald-950">
+
+    <!-- 1000x1000 Living Vector Ecosystem -->
+    <svg id="ecosystem-svg" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice" class="w-full h-full block" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Living evergreen forest ecosystem with roaming deer, grazing cows, a resting tiger, a submerged crocodile, swimming fish, flying birds, and butterflies">
+      <defs>
+        <!-- Warm Forest Morning Sky (dynamically interpolated by Day-Night Engine) -->
+        <linearGradient id="forestSky" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop id="sky-stop-0" offset="0%" stop-color="#3B6E8C" />
+          <stop id="sky-stop-1" offset="45%" stop-color="#8AB6C1" />
+          <stop id="sky-stop-2" offset="80%" stop-color="#E9D8A6" />
+          <stop id="sky-stop-3" offset="100%" stop-color="#F6E8C3" />
+        </linearGradient>
+
+        <!-- Glowing Sun -->
+        <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+          <stop id="sun-glow-0" offset="0%" stop-color="#FFFBEB" stop-opacity="0.95" />
+          <stop id="sun-glow-1" offset="45%" stop-color="#FDE68A" stop-opacity="0.45" />
+          <stop id="sun-glow-2" offset="100%" stop-color="#F59E0B" stop-opacity="0" />
+        </radialGradient>
+
+        <!-- Glowing Moon Aura -->
+        <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#E0F2FE" stop-opacity="0.72" />
+          <stop offset="45%" stop-color="#93C5FD" stop-opacity="0.28" />
+          <stop offset="100%" stop-color="#3B82F6" stop-opacity="0" />
+        </radialGradient>
+
+        <!-- Firefly Bioluminescence Radial Glow -->
+        <radialGradient id="fireflyGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FEF08A" stop-opacity="1" />
+          <stop offset="40%" stop-color="#A3E635" stop-opacity="0.55" />
+          <stop offset="100%" stop-color="#65A30D" stop-opacity="0" />
+        </radialGradient>
+
+        <!-- Soft Distant Forested Ridges (Minimal Hills, No Big Mountains) -->
+        <linearGradient id="farHillGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#52796F" />
+          <stop offset="100%" stop-color="#354F52" />
+        </linearGradient>
+
+        <linearGradient id="midHillGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#3A6351" />
+          <stop offset="100%" stop-color="#244336" />
+        </linearGradient>
+
+        <!-- Lush Forest Floor & Meadow Clearings -->
+        <linearGradient id="meadowBaseGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#4A7C59" />
+          <stop offset="35%" stop-color="#588B54" />
+          <stop offset="70%" stop-color="#3D6B43" />
+          <stop offset="100%" stop-color="#26492D" />
+        </linearGradient>
+
+        <!-- Sunny Meadow Clearing Patch -->
+        <radialGradient id="sunnyClearing" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#8AB85C" stop-opacity="0.9" />
+          <stop offset="65%" stop-color="#6A994E" stop-opacity="0.55" />
+          <stop offset="100%" stop-color="#4A7C59" stop-opacity="0" />
+        </radialGradient>
+
+        <!-- Forest Shadow Clearing (Tiger Ambush Edge) -->
+        <radialGradient id="shadedGrove" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#1B3824" stop-opacity="0.85" />
+          <stop offset="70%" stop-color="#26492D" stop-opacity="0.4" />
+          <stop offset="100%" stop-color="#26492D" stop-opacity="0" />
+        </radialGradient>
+
+        <!-- Clear Riverbed & Semi-Transparent Water Gradients -->
+        <linearGradient id="riverBedGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#3E5C63" />
+          <stop offset="50%" stop-color="#2D4A53" />
+          <stop offset="100%" stop-color="#1E353D" />
+        </linearGradient>
+
+        <linearGradient id="riverSurfaceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop id="water-stop-0" offset="0%" stop-color="#76C893" stop-opacity="0.48" />
+          <stop id="water-stop-1" offset="45%" stop-color="#34A0A4" stop-opacity="0.55" />
+          <stop id="water-stop-2" offset="100%" stop-color="#1A759F" stop-opacity="0.62" />
+        </linearGradient>
+
+        <!-- Dappled Sunlight / Moonlight Shafts -->
+        <linearGradient id="sunShaftGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop id="shaft-stop-0" offset="0%" stop-color="#FFFBEB" stop-opacity="0.45" />
+          <stop id="shaft-stop-1" offset="100%" stop-color="#FEF3C7" stop-opacity="0" />
+        </linearGradient>
+
+        <!-- ClipPath for River Interior (keeps submerged fish & crocodile underwater body strictly inside river) -->
+        <clipPath id="riverClip">
+          <path d="M-30 575 
+                   C 160 555, 290 615, 475 610 
+                   C 655 605, 780 545, 1030 565 
+                   L 1030 765 
+                   C 790 735, 655 795, 465 795 
+                   C 275 795, 145 735, -30 755 Z" />
+        </clipPath>
+      </defs>
+
+      <!-- 1. SKY & GENTLE ATMOSPHERE -->
+      <rect width="1000" height="320" fill="url(#forestSky)" />
+
+      <!-- Procedural Starfield & Faint Milky Way Band (fades in at Dusk & Night) -->
+      <g id="starfield-layer" opacity="0">
+        <path d="M-40 215 Q320 115 680 75 T1060 25" fill="none" stroke="#BAE6FD" stroke-width="64" stroke-linecap="round" opacity="0.06" />
+        <path d="M-40 215 Q320 115 680 75 T1060 25" fill="none" stroke="#E0F2FE" stroke-width="26" stroke-linecap="round" opacity="0.07" />
+      </g>
+
+      <!-- Arcing Sun Group -->
+      <g id="sun-celestial" transform="translate(760, 145)">
+        <circle cx="0" cy="0" r="165" fill="url(#sunGlow)" class="sun-halo" />
+        <circle id="sun-disc" cx="0" cy="0" r="42" fill="#FFFDF5" opacity="0.92" />
+      </g>
+
+      <!-- Arcing Detailed Cratered Moon Group -->
+      <g id="moon-celestial" transform="translate(240, 130)" opacity="0">
+        <circle cx="0" cy="0" r="135" fill="url(#moonGlow)" />
+        <circle cx="0" cy="0" r="30" fill="#F1F5F9" />
+        <!-- Subtle Lunar Craters & Maria -->
+        <circle cx="-9" cy="-7" r="6.5" fill="#CBD5E1" opacity="0.55" />
+        <circle cx="8" cy="6" r="5" fill="#CBD5E1" opacity="0.5" />
+        <circle cx="-4" cy="11" r="3.5" fill="#94A3B8" opacity="0.45" />
+        <circle cx="10" cy="-9" r="3" fill="#CBD5E1" opacity="0.45" />
+        <circle cx="-14" cy="4" r="2.6" fill="#94A3B8" opacity="0.4" />
+      </g>
+
+      <!-- Soft Drifting Clouds -->
+      <g id="cloud-layer-1" class="cloud-drift-1" opacity="0.72" fill="#FFFDF7">
+        <path d="M30 95 Q52 70 85 78 Q112 52 150 68 Q182 65 196 88 Q216 92 210 105 L24 105 Z" />
+      </g>
+      <g id="cloud-layer-2" class="cloud-drift-2" opacity="0.6" fill="#FFF8E7">
+        <path d="M20 145 Q40 124 68 130 Q92 108 124 122 Q152 120 162 138 L16 138 Z" />
+      </g>
+
+      <!-- 2. MINIMAL DISTANT FORESTED HILLS (Low Rolling Horizon) -->
+      <path d="M-20 265 Q190 215 410 245 Q660 275 850 225 Q940 210 1020 230 L1020 330 L-20 330 Z" fill="url(#farHillGrad)" />
+      <path d="M-20 290 Q240 250 490 280 Q740 305 1020 260 L1020 360 L-20 360 Z" fill="url(#midHillGrad)" />
+
+      <!-- Distant Treeline Silhouette -->
+      <g id="distant-treeline" opacity="0.88"></g>
+
+      <!-- 3. LUSH EVERGREEN FOREST FLOOR & CLEARINGS -->
+      <rect x="0" y="295" width="1000" height="705" fill="url(#meadowBaseGrad)" />
+
+      <!-- Sunny Grazing Meadow (Upper-Left & Center Clearing for Deer & Cows) -->
+      <ellipse cx="295" cy="435" rx="255" ry="115" fill="url(#sunnyClearing)" />
+      <ellipse cx="670" cy="450" rx="230" ry="105" fill="url(#sunnyClearing)" />
+
+      <!-- Shaded Forest Edge Grove (Upper-Right & Foreground-Right for Tiger Ambush) -->
+      <ellipse cx="835" cy="485" rx="185" ry="95" fill="url(#shadedGrove)" />
+      <ellipse cx="185" cy="875" rx="260" ry="110" fill="url(#sunnyClearing)" />
+      <ellipse cx="785" cy="885" rx="240" ry="115" fill="url(#shadedGrove)" />
+
+      <!-- Subtle Forest Dirt Paths -->
+      <path d="M120 425 Q290 455 445 435 T755 465" fill="none" stroke="#6B5E4C" stroke-width="16" stroke-linecap="round" opacity="0.22" />
+      <path d="M85 865 Q310 835 530 875 T910 855" fill="none" stroke="#6B5E4C" stroke-width="18" stroke-linecap="round" opacity="0.2" />
+
+      <!-- 4. WINDING TRANSLUCENT RIVER & UNDERWATER LIFE -->
+      <g id="river-layer">
+        <!-- Riverbank Soil & Mossy Edges -->
+        <path d="M-30 568 C 160 548, 290 608, 475 603 C 655 598, 780 538, 1030 558 L 1030 774 C 790 744, 655 804, 465 804 C 275 804, 145 744, -30 764 Z" fill="#3B4D3B" />
+
+        <!-- Riverbed Base -->
+        <path d="M-30 575 C 160 555, 290 615, 475 610 C 655 605, 780 545, 1030 565 L 1030 765 C 790 735, 655 795, 465 795 C 275 795, 145 735, -30 755 Z" fill="url(#riverBedGrad)" />
+
+        <!-- Underwater Pebbles, Reeds & Swimming Fish (Clipped Inside River) -->
+        <g clip-path="url(#riverClip)">
+          <!-- Submerged River Stones -->
+          <g fill="#233940" opacity="0.7">
+            <ellipse cx="140" cy="645" rx="22" ry="11" />
+            <ellipse cx="172" cy="655" rx="14" ry="8" />
+            <ellipse cx="380" cy="715" rx="26" ry="12" />
+            <ellipse cx="595" cy="665" rx="20" ry="10" />
+            <ellipse cx="780" cy="635" rx="25" ry="12" />
+            <ellipse cx="860" cy="705" rx="18" ry="9" />
+          </g>
+
+          <!-- Underwater Swaying River Weeds -->
+          <g stroke="#2D6A4F" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.65">
+            <path d="M230 745 Q222 715 234 685" class="sway" />
+            <path d="M242 748 Q250 718 238 692" class="sway" />
+            <path d="M665 745 Q655 710 668 680" class="sway" />
+            <path d="M678 742 Q688 712 676 686" class="sway" />
+          </g>
+
+          <!-- Dynamic Underwater Fish Layer (Populated & Animated by JS) -->
+          <g id="underwater-fish-layer"></g>
+
+          <!-- Dynamic Submerged Crocodile Body Layer -->
+          <g id="submerged-croc-layer"></g>
+        </g>
+
+        <!-- Semi-Transparent Flowing Water Surface Overlay -->
+        <path d="M-30 575 C 160 555, 290 615, 475 610 C 655 605, 780 545, 1030 565 L 1030 765 C 790 735, 655 795, 465 795 C 275 795, 145 735, -30 755 Z" fill="url(#riverSurfaceGrad)" />
+
+        <!-- Starlight & Moonlight Shimmer Reflections on Stream (visible at night) -->
+        <g id="water-star-reflections" opacity="0" fill="#E0F2FE">
+          <circle cx="235" cy="642" r="1.5" class="star-twinkle" />
+          <circle cx="345" cy="672" r="1.8" class="star-twinkle" style="animation-delay: -1.1s;" />
+          <circle cx="490" cy="655" r="1.4" class="star-twinkle" style="animation-delay: -2.2s;" />
+          <circle cx="615" cy="685" r="1.7" class="star-twinkle" style="animation-delay: -0.7s;" />
+          <circle cx="775" cy="645" r="1.5" class="star-twinkle" style="animation-delay: -1.8s;" />
+          <ellipse id="moon-water-glint" cx="260" cy="665" rx="34" ry="4.5" fill="#BAE6FD" opacity="0.35" class="water-shimmer" />
+        </g>
+
+        <!-- Surface Foam & Gentle Current Lines -->
+        <g stroke="#E0FBFC" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.45">
+          <path d="M40 618 Q135 612 220 624" class="water-shimmer" style="animation-delay: 0s;" />
+          <path d="M275 642 Q370 652 465 645" class="water-shimmer" style="animation-delay: -1.1s;" />
+          <path d="M515 632 Q625 618 725 626" class="water-shimmer" style="animation-delay: -2.2s;" />
+          <path d="M775 612 Q885 604 975 615" class="water-shimmer" style="animation-delay: -0.7s;" />
+          <path d="M90 715 Q205 708 310 725" class="water-shimmer" style="animation-delay: -1.6s;" />
+          <path d="M395 745 Q515 752 620 738" class="water-shimmer" style="animation-delay: -2.8s;" />
+          <path d="M685 718 Q805 705 925 718" class="water-shimmer" style="animation-delay: -0.4s;" />
+        </g>
+
+        <!-- Above-Water Crocodile Parts (Eyes, Snout, Back Ridges) -->
+        <g id="surface-croc-layer"></g>
+
+        <!-- Leaping Fish & Water Splash Ripples -->
+        <g id="jumping-fish-layer"></g>
+      </g>
+
+      <!-- 5. MOSSY RIVERBANK ROCKS (Tiger Ambush Cover & Stream Boulders) -->
+      <g id="bank-rocks">
+        <!-- Upper-right tiger cover rocks -->
+        <ellipse cx="835" cy="512" rx="34" ry="15" fill="#4A5759" />
+        <ellipse cx="832" cy="508" rx="30" ry="11" fill="#6B705C" />
+        <path d="M812 504 Q832 496 854 504" fill="none" stroke="#588157" stroke-width="4" stroke-linecap="round" />
+
+        <ellipse cx="878" cy="520" rx="22" ry="11" fill="#3D405B" />
+        <ellipse cx="876" cy="517" rx="18" ry="8" fill="#5C677D" />
+
+        <!-- Stream bank boulders -->
+        <ellipse cx="145" cy="574" rx="26" ry="12" fill="#5C677D" />
+        <path d="M128 570 Q145 562 162 570" fill="none" stroke="#6A994E" stroke-width="3.5" stroke-linecap="round" />
+
+        <ellipse cx="645" cy="772" rx="30" ry="13" fill="#4A5759" />
+        <ellipse cx="642" cy="768" rx="25" ry="9" fill="#6B705C" />
+      </g>
+
+      <!-- 6. DYNAMIC Y-SORTED WORLD (Evergreen Trees, Ferns, Deer, Cows, Tiger, Rabbits) -->
+      <g id="y-sorted-world"></g>
+
+      <!-- 7. CANOPY OVERHANG & DAPPLED SUNLIGHT / MOONLIGHT SHAFTS -->
+      <g id="canopy-shafts-group" pointer-events="none">
+        <!-- Sunbeams / Moonbeams filtering through evergreen boughs -->
+        <polygon points="180,220 270,220 390,620 230,620" fill="url(#sunShaftGrad)" class="sunbeam" style="animation-delay: 0s;" />
+        <polygon points="480,210 585,210 720,640 530,640" fill="url(#sunShaftGrad)" class="sunbeam" style="animation-delay: -3.2s;" />
+        <polygon points="710,200 810,200 940,590 770,590" fill="url(#sunShaftGrad)" class="sunbeam" style="animation-delay: -6.1s;" />
+      </g>
+
+      <!-- 8. AERIAL LAYER (Soaring Forest Birds, Nocturnal Owls/Bats & Butterflies) -->
+      <g id="aerial-layer"></g>
+
+      <!-- 9. GLOBAL ATMOSPHERIC DAY-NIGHT LIGHTING OVERLAY (Multiply Tint) -->
+      <rect id="day-night-tint" width="1000" height="1000" fill="#FFFFFF" style="mix-blend-mode: multiply;" pointer-events="none" />
+
+      <!-- 10. BIOLUMINESCENT FIREFLIES & MOONLIT EYE-SHINE OVERLAY (Un-darkened at night) -->
+      <g id="nocturnal-glow-layer" pointer-events="none"></g>
+
+      <!-- 11. ACTIVE ANIMAL SELECTION RETICLE -->
+      <g id="animal-selection-reticle" opacity="0" pointer-events="none">
+        <ellipse id="reticle-outer-ring" cx="0" cy="0" rx="28" ry="12" fill="none" stroke="#FDE047" stroke-width="2" stroke-dasharray="5 4" class="animal-selected-ring" />
+      </g>
+
+      <!-- Subtle Natural Vignette -->
+      <rect width="1000" height="1000" fill="none" stroke="#0F2417" stroke-width="14" opacity="0.32" pointer-events="none" />
+    </svg>
+
+    <!-- Draggable Glassmorphic Wildlife Inspector Pop-Up Card (Distinct Theme & Side Placement Per Animal) -->
+    <aside id="animal-inspector-card" role="dialog" aria-live="polite" aria-label="Animal details card" class="hidden absolute z-30 w-[270px] sm:w-[300px] rounded-2xl bg-emerald-950/92 backdrop-blur-xl border border-emerald-300/35 text-emerald-50 shadow-[0_22px_55px_rgba(0,0,0,0.8)] transition-colors duration-300">
+      <!-- Draggable Header Handle -->
+      <div id="inspector-drag-handle" class="px-3.5 py-2.5 border-b border-emerald-300/15 flex items-center justify-between gap-2 cursor-grab active:cursor-grabbing bg-emerald-900/45 rounded-t-2xl touch-none transition-colors duration-300">
+        <div class="flex items-center gap-2 min-w-0">
+          <!-- Grip Dots Indicator -->
+          <svg class="w-3.5 h-3.5 text-emerald-300/60 shrink-0" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <circle cx="5" cy="4" r="1.3"/><circle cx="11" cy="4" r="1.3"/>
+            <circle cx="5" cy="8" r="1.3"/><circle cx="11" cy="8" r="1.3"/>
+            <circle cx="5" cy="12" r="1.3"/><circle cx="11" cy="12" r="1.3"/>
+          </svg>
+          <span id="inspector-emoji" class="text-lg leading-none shrink-0">🦌</span>
+          <div class="min-w-0">
+            <div class="flex items-center gap-1.5">
+              <h2 id="inspector-name" class="text-xs sm:text-sm font-semibold text-emerald-50 truncate">Spotted Forest Deer</h2>
+              <span id="inspector-side-badge" class="px-1.5 py-0.2 rounded text-[9px] font-semibold uppercase tracking-wider bg-white/10 text-emerald-200 shrink-0">Right</span>
+            </div>
+            <p id="inspector-scientific" class="text-[10px] italic text-emerald-300/80 truncate">Axis axis</p>
+          </div>
+        </div>
+        <button id="inspector-close-btn" type="button" aria-label="Close animal details" class="w-6 h-6 rounded-full bg-white/10 hover:bg-rose-500/35 border border-white/15 text-emerald-100 hover:text-rose-200 flex items-center justify-center text-xs font-semibold transition cursor-pointer shrink-0">
+          ✕
+        </button>
+      </div>
+
+      <!-- Card Body -->
+      <div class="p-3.5 space-y-2.5 text-xs">
+        <!-- Live Real-Time Activity Pill -->
+        <div class="flex items-center justify-between gap-2 px-2.5 py-1.5 rounded-xl bg-black/35 border border-white/10">
+          <span class="text-[10px] uppercase tracking-wider text-emerald-200/75 font-medium">Live Behavior</span>
+          <span id="inspector-live-status" class="text-[11px] font-semibold text-amber-300 flex items-center gap-1.5">
+            <span id="inspector-pulse-dot" class="w-1.5 h-1.5 rounded-full bg-amber-300 animate-ping"></span>
+            <span id="inspector-status-text">Grazing Meadow Grass</span>
+          </span>
+        </div>
+
+        <!-- Quick Facts Grid -->
+        <div class="grid grid-cols-2 gap-1.5 text-[11px]">
+          <div class="p-2 rounded-xl bg-black/25 border border-white/10">
+            <div class="text-[10px] text-emerald-200/65">Diet &amp; Role</div>
+            <div id="inspector-diet" class="font-medium text-emerald-50 mt-0.5">Herbivore</div>
+          </div>
+          <div class="p-2 rounded-xl bg-black/25 border border-white/10">
+            <div class="text-[10px] text-emerald-200/65">Active Rhythm</div>
+            <div id="inspector-rhythm" class="font-medium text-emerald-50 mt-0.5">Diurnal / Crepuscular</div>
+          </div>
+          <div class="p-2 rounded-xl bg-black/25 border border-white/10 col-span-2">
+            <div class="text-[10px] text-emerald-200/65">Micro-Habitat</div>
+            <div id="inspector-habitat" class="font-medium text-emerald-50 mt-0.5">Sunlit Evergreen Clearing</div>
+          </div>
+        </div>
+
+        <!-- Ecological Description -->
+        <p id="inspector-bio" class="text-[11px] leading-relaxed text-emerald-100/90">
+          Feeds on tender meadow clover and wild grasses while twitching its sensitive ears to detect forest predators.
+        </p>
+
+        <!-- Drag Hint & Coordinates Footer -->
+        <div class="pt-1.5 border-t border-white/10 flex items-center justify-between text-[10px] text-emerald-200/65">
+          <span>Click any animal · Drag header</span>
+          <span id="inspector-coords" class="font-mono">X: 245 · Y: 445</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Sleek Top-Left Glassmorphic Day-Night Cycle HUD Pill -->
+    <div id="day-night-hud" class="absolute top-3.5 left-3.5 right-3.5 sm:right-auto sm:top-4 sm:left-4 z-20 px-3 py-1.5 rounded-2xl sm:rounded-full bg-emerald-950/80 backdrop-blur-md border border-emerald-300/25 text-emerald-50 shadow-xl flex flex-wrap sm:flex-nowrap items-center justify-between sm:justify-start gap-2 text-xs">
+      <!-- Play / Pause Time Cycle -->
+      <button id="dn-toggle-btn" type="button" aria-label="Play or pause day-night cycle" class="flex items-center gap-1.5 px-2 py-1 rounded-full bg-emerald-500/25 hover:bg-emerald-500/40 active:scale-95 border border-emerald-300/30 text-emerald-50 font-medium transition cursor-pointer">
+        <svg id="dn-icon-pause" class="w-3 h-3 fill-current text-amber-300" viewBox="0 0 24 24">
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </svg>
+        <svg id="dn-icon-play" class="w-3 h-3 fill-current text-amber-300 hidden" viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z" />
+        </svg>
+        <span id="dn-phase-badge" class="whitespace-nowrap text-[11px] font-semibold text-amber-200">Morning</span>
+      </button>
+
+      <!-- Live Formatted 12h Clock Readout -->
+      <span id="dn-clock-readout" class="font-mono text-[11px] sm:text-xs font-semibold tracking-tight text-emerald-100 min-w-[62px] text-center">08:30 AM</span>
+
+      <!-- Draggable Time-of-Day Scrubber Slider -->
+      <input id="dn-time-slider" type="range" min="0" max="24" step="0.02" value="8.5" aria-label="Time of day scrubber" class="w-20 sm:w-24 h-1 bg-emerald-200/25 rounded-lg appearance-none cursor-pointer accent-amber-300" />
+
+      <!-- Quick-Jump Preset Icons (Dawn, Day, Sunset, Night) -->
+      <div class="flex items-center bg-black/25 rounded-full p-0.5 border border-emerald-300/15">
+        <button type="button" data-hour="6.0" title="Dawn (06:00 AM)" aria-label="Jump to Dawn" class="dn-preset-btn p-1 rounded-full hover:bg-amber-400/25 text-amber-200 transition cursor-pointer">
+          <!-- Dawn Horizon Sun -->
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 10V3M5.2 13.2l1.4 1.4M18.8 13.2l-1.4 1.4M2 18h20M7 18a5 5 0 0 1 10 0" stroke-linecap="round" />
+          </svg>
+        </button>
+        <button type="button" data-hour="12.0" title="Midday (12:00 PM)" aria-label="Jump to Day" class="dn-preset-btn p-1 rounded-full hover:bg-amber-400/25 text-yellow-300 transition cursor-pointer">
+          <!-- Bright Sun -->
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="4" fill="currentColor" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke-linecap="round" />
+          </svg>
+        </button>
+        <button type="button" data-hour="17.75" title="Golden Sunset (05:45 PM)" aria-label="Jump to Sunset" class="dn-preset-btn p-1 rounded-full hover:bg-orange-400/25 text-orange-300 transition cursor-pointer">
+          <!-- Sunset -->
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 3v7m0 0l-3-3m3 3l3-3M2 18h20M7 18a5 5 0 0 1 10 0" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <button type="button" data-hour="0.5" title="Starry Night (12:30 AM)" aria-label="Jump to Night" class="dn-preset-btn p-1 rounded-full hover:bg-sky-400/25 text-sky-300 transition cursor-pointer">
+          <!-- Crescent Moon -->
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Speed Selector (1x, 5x, 20x) -->
+      <div class="flex items-center bg-black/25 rounded-full p-0.5 border border-emerald-300/15 text-[10px]">
+        <button type="button" data-speed="1" class="dn-speed-btn px-1.5 py-0.5 rounded-full bg-emerald-500/35 text-emerald-100 font-semibold transition cursor-pointer">1x</button>
+        <button type="button" data-speed="5" class="dn-speed-btn px-1.5 py-0.5 rounded-full text-emerald-200/70 hover:text-emerald-100 transition cursor-pointer">5x</button>
+        <button type="button" data-speed="20" class="dn-speed-btn px-1.5 py-0.5 rounded-full text-emerald-200/70 hover:text-emerald-100 transition cursor-pointer">20x</button>
+      </div>
+    </div>
+
+    <!-- Minimalist Ecosystem Status Pill -->
+    <div class="absolute bottom-3.5 left-3.5 sm:bottom-4 sm:left-4 px-3.5 py-1.5 rounded-full bg-emerald-950/75 backdrop-blur-md border border-emerald-300/20 text-emerald-50 text-xs sm:text-sm font-medium tracking-wide shadow-lg flex items-center gap-2.5 pointer-events-none">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span>Evergreen Forest Ecosystem</span>
+    </div>
+
+    <!-- Floating Glassmorphic Real Forest Soundscape Controls -->
+    <div id="sound-dock" class="absolute bottom-3.5 right-3.5 sm:bottom-4 sm:right-4 z-20 flex flex-col items-end gap-2">
+      <!-- Subtle Info / Attribution Popover (toggled via info button) -->
+      <div id="audio-info-popover" class="hidden max-w-[270px] sm:max-w-[310px] p-3 rounded-2xl bg-emerald-950/90 backdrop-blur-md border border-emerald-300/20 text-emerald-100/90 text-[11px] leading-relaxed shadow-2xl">
+        <div class="font-semibold text-emerald-300 mb-1 flex items-center justify-between">
+          <span>100% Real Field Recordings</span>
+          <span class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-200 text-[10px]">0% AI</span>
+        </div>
+        <p class="mb-1.5 text-emerald-100/80">Gapless dual-deck crossfading audio sourced directly from Wikimedia Commons outdoor recordings:</p>
+        <ul class="space-y-1 text-emerald-200/75 list-disc pl-3.5">
+          <li><span class="text-emerald-100">Auto Day/Night:</span> Seamlessly blends daytime creek/birds into real nocturnal crickets &amp; night forest at dusk</li>
+          <li><span class="text-emerald-100">Creek &amp; Birds:</span> <em>Forest lawn creek.ogg</em> (7m 29s outdoor stream &amp; songbirds)</li>
+          <li><span class="text-emerald-100">Deep Rainforest:</span> <em>Lamington National Park</em> (3m 29s Sony PCM-D100 field capture)</li>
+          <li><span class="text-emerald-100">Night Forest:</span> <em>Crickets in night.ogg</em> &amp; nocturnal meadow field recording</li>
+        </ul>
+        <div class="mt-2 pt-2 border-t border-emerald-400/15 flex items-center justify-between gap-2">
+          <label class="cursor-pointer text-emerald-300 hover:text-emerald-200 underline underline-offset-2">
+            <span>Load local audio file…</span>
+            <input id="custom-audio-input" type="file" accept="audio/*" class="hidden" />
+          </label>
+          <span id="audio-status-text" class="text-emerald-300/70 italic">Ready</span>
+        </div>
+      </div>
+
+      <!-- Main Compact Glassmorphic Control Pill -->
+      <div class="px-2.5 py-1.5 rounded-full bg-emerald-950/80 backdrop-blur-md border border-emerald-300/25 text-emerald-50 shadow-xl flex items-center gap-1.5 sm:gap-2 transition-all">
+        <!-- Play / Pause Button -->
+        <button id="audio-toggle-btn" type="button" aria-label="Play or pause forest ambience" class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/25 hover:bg-emerald-500/40 active:scale-95 border border-emerald-300/30 text-emerald-50 text-xs font-medium transition cursor-pointer">
+          <!-- Play Icon -->
+          <svg id="icon-play" class="w-3.5 h-3.5 fill-current text-emerald-300" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+          <!-- Pause Icon -->
+          <svg id="icon-pause" class="w-3.5 h-3.5 fill-current text-emerald-300 hidden" viewBox="0 0 24 24">
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+          </svg>
+          <span id="play-btn-label" class="whitespace-nowrap">Click for Forest Sound</span>
+        </button>
+
+        <!-- Soundscape Mode Switcher -->
+        <div id="mode-switcher" class="hidden sm:flex items-center bg-black/25 rounded-full p-0.5 border border-emerald-300/15 text-[11px]">
+          <button type="button" data-mode="auto" class="mode-btn px-2 py-0.5 rounded-full bg-emerald-500/35 text-emerald-100 font-medium transition cursor-pointer">Auto Day/Night</button>
+          <button type="button" data-mode="creek" class="mode-btn px-2 py-0.5 rounded-full text-emerald-200/70 hover:text-emerald-100 transition cursor-pointer">Creek &amp; Birds</button>
+          <button type="button" data-mode="rainforest" class="mode-btn px-2 py-0.5 rounded-full text-emerald-200/70 hover:text-emerald-100 transition cursor-pointer">Rainforest</button>
+          <button type="button" data-mode="blended" class="mode-btn px-2 py-0.5 rounded-full text-emerald-200/70 hover:text-emerald-100 transition cursor-pointer">Blended</button>
+        </div>
+
+        <!-- Mobile Compact Mode Cycle Button -->
+        <button id="mobile-mode-btn" type="button" class="sm:hidden px-2 py-1 rounded-full bg-black/25 border border-emerald-300/15 text-[11px] text-emerald-200 font-medium cursor-pointer">
+          Auto
+        </button>
+
+        <!-- Mute & Volume Slider -->
+        <div class="flex items-center gap-1.5 pl-0.5">
+          <button id="mute-btn" type="button" aria-label="Mute or unmute" class="p-1 rounded-full hover:bg-emerald-400/15 text-emerald-200/90 transition cursor-pointer">
+            <svg id="icon-vol-on" class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+              <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
+            </svg>
+            <svg id="icon-vol-muted" class="w-3.5 h-3.5 fill-current text-rose-300 hidden" viewBox="0 0 24 24">
+              <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" />
+            </svg>
+          </button>
+          <input id="volume-slider" type="range" min="0" max="1" step="0.01" value="0.72" aria-label="Ambient volume" class="w-14 sm:w-16 h-1 bg-emerald-200/25 rounded-lg appearance-none cursor-pointer accent-emerald-400" />
+        </div>
+
+        <!-- Info / Source Credits Button -->
+        <button id="audio-info-btn" type="button" aria-label="Field recording sources" class="w-5 h-5 rounded-full bg-emerald-400/15 hover:bg-emerald-400/30 border border-emerald-300/20 text-emerald-200 text-[11px] font-semibold flex items-center justify-center transition cursor-pointer">
+          i
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    /**
+     * Autonomous Living Evergreen Forest Ecosystem Engine
+     * Handles procedural evergreen flora, Y-sorted depth rendering,
+     * and 60fps autonomous animal behaviors (grazing, roaming, stalking, swimming, flying).
+     */
+    (function initEcosystem() {
+      const svgNS = "http://www.w3.org/2000/svg";
+
+      const distantTreeline = document.getElementById("distant-treeline");
+      const ySortedWorld = document.getElementById("y-sorted-world");
+      const underwaterFishLayer = document.getElementById("underwater-fish-layer");
+      const submergedCrocLayer = document.getElementById("submerged-croc-layer");
+      const surfaceCrocLayer = document.getElementById("surface-croc-layer");
+      const jumpingFishLayer = document.getElementById("jumping-fish-layer");
+      const aerialLayer = document.getElementById("aerial-layer");
+      const starfieldLayer = document.getElementById("starfield-layer");
+      const nocturnalGlowLayer = document.getElementById("nocturnal-glow-layer");
+      const selectionReticle = document.getElementById("animal-selection-reticle");
+
+      // Draggable Wildlife Inspector Card Elements
+      const stageContainer = document.getElementById("ecosystem-stage");
+      const ecosystemSvg = document.getElementById("ecosystem-svg");
+      const inspectorCard = document.getElementById("animal-inspector-card");
+      const inspectorDragHandle = document.getElementById("inspector-drag-handle");
+      const inspectorCloseBtn = document.getElementById("inspector-close-btn");
+      const inspectorEmoji = document.getElementById("inspector-emoji");
+      const inspectorName = document.getElementById("inspector-name");
+      const inspectorSideBadge = document.getElementById("inspector-side-badge");
+      const inspectorScientific = document.getElementById("inspector-scientific");
+      const inspectorStatusText = document.getElementById("inspector-status-text");
+      const inspectorPulseDot = document.getElementById("inspector-pulse-dot");
+      const inspectorDiet = document.getElementById("inspector-diet");
+      const inspectorRhythm = document.getElementById("inspector-rhythm");
+      const inspectorHabitat = document.getElementById("inspector-habitat");
+      const inspectorBio = document.getElementById("inspector-bio");
+      const inspectorCoords = document.getElementById("inspector-coords");
+      const reticleOuterRing = document.getElementById("reticle-outer-ring");
+
+      let selectedAnimal = null;
+      let userHasDraggedCard = false;
+
+      // Distinct visual themes per animal guild so each creature opens a unique pop-up card style
+      const CARD_THEMES = {
+        herbivore: {
+          cardBg: "rgba(6, 46, 34, 0.93)",
+          headerBg: "rgba(16, 85, 62, 0.55)",
+          borderColor: "rgba(110, 231, 183, 0.42)",
+          accentHex: "#6EE7B7",
+          dotClass: "bg-emerald-300"
+        },
+        predator: {
+          cardBg: "rgba(56, 22, 9, 0.94)",
+          headerBg: "rgba(124, 45, 18, 0.58)",
+          borderColor: "rgba(251, 146, 60, 0.48)",
+          accentHex: "#FB923C",
+          dotClass: "bg-orange-400"
+        },
+        aquatic: {
+          cardBg: "rgba(8, 39, 56, 0.94)",
+          headerBg: "rgba(14, 78, 108, 0.58)",
+          borderColor: "rgba(56, 189, 248, 0.45)",
+          accentHex: "#38BDF8",
+          dotClass: "bg-sky-300"
+        },
+        avian: {
+          cardBg: "rgba(30, 27, 62, 0.94)",
+          headerBg: "rgba(67, 56, 128, 0.55)",
+          borderColor: "rgba(165, 180, 252, 0.45)",
+          accentHex: "#A5B4FC",
+          dotClass: "bg-indigo-300"
+        },
+        bioluminescent: {
+          cardBg: "rgba(38, 36, 10, 0.94)",
+          headerBg: "rgba(92, 86, 18, 0.55)",
+          borderColor: "rgba(250, 204, 21, 0.5)",
+          accentHex: "#FDE047",
+          dotClass: "bg-yellow-300"
+        }
+      };
+
+      function getAnimalThemeKey(emoji) {
+        if (emoji === "🐅" || emoji === "🐊") return "predator";
+        if (emoji === "🐟") return "aquatic";
+        if (emoji === "🦅" || emoji === "🐦" || emoji === "🦉" || emoji === "🦇") return "avian";
+        if (emoji === "✨" || emoji === "🦋") return "bioluminescent";
+        return "herbivore";
+      }
+
+      // Drag-to-move logic for the Wildlife Inspector Card (Pointer Events: Mouse & Touch)
+      (function setupDraggableInspector() {
+        let isDragging = false;
+        let startClientX = 0;
+        let startClientY = 0;
+        let startLeft = 0;
+        let startTop = 0;
+
+        inspectorDragHandle.addEventListener("pointerdown", (e) => {
+          if (e.target.closest("#inspector-close-btn")) return;
+          isDragging = true;
+          userHasDraggedCard = true;
+          inspectorDragHandle.setPointerCapture(e.pointerId);
+
+          const stageRect = stageContainer.getBoundingClientRect();
+          const cardRect = inspectorCard.getBoundingClientRect();
+          startClientX = e.clientX;
+          startClientY = e.clientY;
+          startLeft = cardRect.left - stageRect.left;
+          startTop = cardRect.top - stageRect.top;
+
+          // Switch from right-anchored to explicit left/top coordinates during drag
+          inspectorCard.style.right = "auto";
+          inspectorCard.style.left = `${startLeft}px`;
+          inspectorCard.style.top = `${startTop}px`;
+        });
+
+        inspectorDragHandle.addEventListener("pointermove", (e) => {
+          if (!isDragging) return;
+          const stageRect = stageContainer.getBoundingClientRect();
+          const cardRect = inspectorCard.getBoundingClientRect();
+          const dx = e.clientX - startClientX;
+          const dy = e.clientY - startClientY;
+
+          const maxLeft = Math.max(8, stageRect.width - cardRect.width - 8);
+          const maxTop = Math.max(8, stageRect.height - cardRect.height - 8);
+          const nextLeft = Math.max(8, Math.min(maxLeft, startLeft + dx));
+          const nextTop = Math.max(8, Math.min(maxTop, startTop + dy));
+
+          inspectorCard.style.left = `${nextLeft}px`;
+          inspectorCard.style.top = `${nextTop}px`;
+        });
+
+        function endDrag(e) {
+          if (!isDragging) return;
+          isDragging = false;
+          try {
+            inspectorDragHandle.releasePointerCapture(e.pointerId);
+          } catch (_) {}
+        }
+
+        inspectorDragHandle.addEventListener("pointerup", endDrag);
+        inspectorDragHandle.addEventListener("pointercancel", endDrag);
+
+        inspectorCloseBtn.addEventListener("click", () => {
+          selectedAnimal = null;
+          inspectorCard.classList.add("hidden");
+          selectionReticle.setAttribute("opacity", "0");
+        });
+      })();
+
+      // Clicking empty forest scenery dismisses the open pop-up card cleanly
+      ecosystemSvg.addEventListener("click", () => {
+        if (selectedAnimal) {
+          selectedAnimal = null;
+          inspectorCard.classList.add("hidden");
+          selectionReticle.setAttribute("opacity", "0");
+        }
+      });
+
+      function inspectAnimal(animal) {
+        const isSwitchingAnimal = selectedAnimal !== animal;
+        selectedAnimal = animal;
+        const info = animal.getDetails();
+        const theme = CARD_THEMES[getAnimalThemeKey(info.emoji)] || CARD_THEMES.herbivore;
+
+        // Apply species-specific color palette to the pop-up card and selection ring
+        inspectorCard.style.backgroundColor = theme.cardBg;
+        inspectorCard.style.borderColor = theme.borderColor;
+        inspectorDragHandle.style.backgroundColor = theme.headerBg;
+        inspectorStatusText.style.color = theme.accentHex;
+        inspectorPulseDot.className = `w-1.5 h-1.5 rounded-full animate-ping ${theme.dotClass}`;
+        reticleOuterRing.setAttribute("stroke", theme.accentHex);
+
+        inspectorEmoji.textContent = info.emoji;
+        inspectorName.textContent = info.name;
+        inspectorScientific.textContent = info.scientific;
+        inspectorDiet.textContent = info.diet;
+        inspectorRhythm.textContent = info.rhythm;
+        inspectorHabitat.textContent = info.habitat;
+        inspectorBio.textContent = info.bio;
+        inspectorStatusText.textContent = info.status;
+        inspectorCoords.textContent = `X: ${Math.round(info.x)} · Y: ${Math.round(info.y)}`;
+
+        inspectorCard.classList.remove("hidden");
+
+        // Trigger fresh pop-in animation whenever a different animal is clicked
+        if (isSwitchingAnimal) {
+          inspectorCard.classList.remove("inspector-card-enter");
+          void inspectorCard.offsetWidth;
+          inspectorCard.classList.add("inspector-card-enter");
+        }
+
+        // Automatically dock on the LEFT or RIGHT side opposite the clicked animal
+        // (resets auto-docking when clicking a new animal unless actively dragged)
+        if (isSwitchingAnimal) {
+          userHasDraggedCard = false;
+        }
+        if (!userHasDraggedCard) {
+          const stageWidth = stageContainer.clientWidth || 700;
+          const cardWidth = inspectorCard.offsetWidth || 285;
+          const placeOnRight = info.x < 500;
+          inspectorSideBadge.textContent = placeOnRight ? "Right View" : "Left View";
+          inspectorCard.style.top = "72px";
+          inspectorCard.style.right = "auto";
+          inspectorCard.style.left = placeOnRight
+            ? `${Math.max(14, stageWidth - cardWidth - 16)}px`
+            : "16px";
+        }
+      }
+
+      function bindAnimalClick(node, animalInstance) {
+        node.classList.add("animal-interactive");
+        node.addEventListener("click", (e) => {
+          e.stopPropagation();
+          inspectAnimal(animalInstance);
+        });
+      }
+
+      // Day-Night Sky & Atmosphere DOM Nodes
+      const skyStops = [
+        document.getElementById("sky-stop-0"),
+        document.getElementById("sky-stop-1"),
+        document.getElementById("sky-stop-2"),
+        document.getElementById("sky-stop-3")
+      ];
+      const waterStops = [
+        document.getElementById("water-stop-0"),
+        document.getElementById("water-stop-1"),
+        document.getElementById("water-stop-2")
+      ];
+      const sunCelestial = document.getElementById("sun-celestial");
+      const sunDisc = document.getElementById("sun-disc");
+      const sunGlowStop0 = document.getElementById("sun-glow-0");
+      const sunGlowStop1 = document.getElementById("sun-glow-1");
+      const moonCelestial = document.getElementById("moon-celestial");
+      const waterStarReflections = document.getElementById("water-star-reflections");
+      const moonWaterGlint = document.getElementById("moon-water-glint");
+      const canopyShaftsGroup = document.getElementById("canopy-shafts-group");
+      const shaftStop0 = document.getElementById("shaft-stop-0");
+      const shaftStop1 = document.getElementById("shaft-stop-1");
+      const dayNightTint = document.getElementById("day-night-tint");
+      const cloudLayer1 = document.getElementById("cloud-layer-1");
+      const cloudLayer2 = document.getElementById("cloud-layer-2");
+
+      function el(tag, attrs = {}) {
+        const node = document.createElementNS(svgNS, tag);
+        for (const [k, v] of Object.entries(attrs)) {
+          node.setAttribute(k, v);
+        }
+        return node;
+      }
+
+      // Color & Math Interpolation Helpers for Smooth 24-Hour Lighting
+      function clamp01(v) {
+        return Math.max(0, Math.min(1, v));
+      }
+
+      function smoothstep(edge0, edge1, x) {
+        const t = clamp01((x - edge0) / (edge1 - edge0));
+        return t * t * (3 - 2 * t);
+      }
+
+      function hexToRgb(hex) {
+        const clean = hex.replace("#", "");
+        return [
+          parseInt(clean.slice(0, 2), 16),
+          parseInt(clean.slice(2, 4), 16),
+          parseInt(clean.slice(4, 6), 16)
+        ];
+      }
+
+      function lerpColor(hexA, hexB, t) {
+        const [r1, g1, b1] = hexToRgb(hexA);
+        const [r2, g2, b2] = hexToRgb(hexB);
+        const r = Math.round(r1 + (r2 - r1) * t);
+        const g = Math.round(g1 + (g2 - g1) * t);
+        const b = Math.round(b1 + (b2 - b1) * t);
+        return `rgb(${r}, ${g}, ${b})`;
+      }
+
+      // 24-Hour Atmospheric Keyframes
+      const SKY_KEYFRAMES = [
+        { h: 0.0,  sky: ["#070D19", "#0F1D36", "#182B49", "#223A5E"], water: ["#1E3A5F", "#152A47", "#0E1D33"], tint: "#4C6396", sunDisc: "#FDE68A", sunGlow: "#F59E0B", cloud: "#334155" },
+        { h: 4.8,  sky: ["#0B132B", "#1C2541", "#3A506B", "#5C6B73"], water: ["#25415E", "#1B334B", "#112236"], tint: "#5E72A3", sunDisc: "#FDBA74", sunGlow: "#FB923C", cloud: "#64748B" },
+        { h: 6.0,  sky: ["#2B3A67", "#7A5C7E", "#E07A5F", "#F2CC8F"], water: ["#D98A6C", "#6D8A96", "#2B4C65"], tint: "#E6C7B5", sunDisc: "#FED7AA", sunGlow: "#FB923C", cloud: "#FDBA74" },
+        { h: 7.5,  sky: ["#3B6E8C", "#8AB6C1", "#E9D8A6", "#F6E8C3"], water: ["#76C893", "#34A0A4", "#1A759F"], tint: "#FFFDF7", sunDisc: "#FFFDF5", sunGlow: "#FDE68A", cloud: "#FFFDF7" },
+        { h: 12.5, sky: ["#2563EB", "#60A5FA", "#BAE6FD", "#E0F2FE"], water: ["#52B788", "#2A9D8F", "#1D6FA5"], tint: "#FFFFFF", sunDisc: "#FFFFFF", sunGlow: "#FEF08A", cloud: "#FFFFFF" },
+        { h: 16.5, sky: ["#3B6E8C", "#8AB6C1", "#E9D8A6", "#F6E8C3"], water: ["#76C893", "#34A0A4", "#1A759F"], tint: "#FFF9EB", sunDisc: "#FFFBEB", sunGlow: "#FDE68A", cloud: "#FFF8E7" },
+        { h: 18.0, sky: ["#312E59", "#9D4EDD", "#F97316", "#FACC15"], water: ["#F59E0B", "#B45309", "#3B3363"], tint: "#F2C4A2", sunDisc: "#FDBA74", sunGlow: "#F97316", cloud: "#FDBA74" },
+        { h: 19.5, sky: ["#161B33", "#3B2854", "#7F3B57", "#B85D43"], water: ["#4A3B63", "#2A2B4F", "#171C36"], tint: "#8E8BB8", sunDisc: "#EA580C", sunGlow: "#C2410C", cloud: "#645373" },
+        { h: 20.8, sky: ["#070D19", "#0F1D36", "#182B49", "#223A5E"], water: ["#1E3A5F", "#152A47", "#0E1D33"], tint: "#4C6396", sunDisc: "#FDE68A", sunGlow: "#F59E0B", cloud: "#334155" },
+        { h: 24.0, sky: ["#070D19", "#0F1D36", "#182B49", "#223A5E"], water: ["#1E3A5F", "#152A47", "#0E1D33"], tint: "#4C6396", sunDisc: "#FDE68A", sunGlow: "#F59E0B", cloud: "#334155" }
+      ];
+
+      function sampleAtmosphere(hour) {
+        let idx = 0;
+        for (let i = 0; i < SKY_KEYFRAMES.length - 1; i++) {
+          if (hour >= SKY_KEYFRAMES[i].h && hour <= SKY_KEYFRAMES[i + 1].h) {
+            idx = i;
+            break;
+          }
+        }
+        const a = SKY_KEYFRAMES[idx];
+        const b = SKY_KEYFRAMES[idx + 1];
+        const span = Math.max(0.0001, b.h - a.h);
+        const t = clamp01((hour - a.h) / span);
+
+        return {
+          sky: a.sky.map((c, i) => lerpColor(c, b.sky[i], t)),
+          water: a.water.map((c, i) => lerpColor(c, b.water[i], t)),
+          tint: lerpColor(a.tint, b.tint, t),
+          sunDisc: lerpColor(a.sunDisc, b.sunDisc, t),
+          sunGlow: lerpColor(a.sunGlow, b.sunGlow, t),
+          cloud: lerpColor(a.cloud, b.cloud, t)
+        };
+      }
+
+      // ---------------------------------------------------------
+      // 0. PROCEDURAL TWINKLING STARFIELD (75 Stars)
+      // ---------------------------------------------------------
+      for (let i = 0; i < 75; i++) {
+        const sx = (i * 137.5) % 990 + 5;
+        const sy = (i * 53.7) % 245 + 8;
+        const sr = (i % 5 === 0) ? 1.8 : (i % 2 === 0 ? 1.25 : 0.85);
+        starfieldLayer.appendChild(el("circle", {
+          cx: sx.toFixed(1),
+          cy: sy.toFixed(1),
+          r: sr,
+          fill: i % 4 === 0 ? "#BAE6FD" : "#FFFBEB",
+          class: "star-twinkle",
+          style: `animation-delay: -${(i * 0.37).toFixed(2)}s;`
+        }));
+      }
+
+      // ---------------------------------------------------------
+      // 1. DISTANT EVERGREEN HORIZON TREELINE
+      // ---------------------------------------------------------
+      for (let x = -15; x <= 1015; x += 22) {
+        const h = 28 + Math.sin(x * 0.05) * 10 + (x % 3) * 6;
+        const yBase = 278 + Math.sin(x * 0.008) * 14;
+        distantTreeline.appendChild(el("polygon", {
+          points: `${x},${yBase - h} ${x - 12},${yBase + 15} ${x + 12},${yBase + 15}`,
+          fill: x % 44 === 0 ? "#244336" : "#2D5242"
+        }));
+      }
+
+      // ---------------------------------------------------------
+      // 2. STATIC Y-SORTED PROPS (Tall Evergreen Trees, Ferns, Grass Tufts)
+      // ---------------------------------------------------------
+      const staticProps = [];
+
+      function createPineTreeNode(x, y, scale, tone) {
+        const g = el("g", { transform: `translate(${x}, ${y}) scale(${scale})` });
+
+        // Dynamic directional ground shadow (shifts with Sun/Moon angle)
+        const shadow = el("ellipse", {
+          cx: "0", cy: "2", rx: "28", ry: "8",
+          fill: "#122618", opacity: "0.45"
+        });
+        g.appendChild(shadow);
+
+        // Sturdy bark trunk
+        g.appendChild(el("rect", {
+          x: "-4.5", y: "-26", width: "9", height: "28", rx: "2",
+          fill: "#3B281E"
+        }));
+
+        const palettes = [
+          { dark: "#1B4332", light: "#2D6A4F" },
+          { dark: "#163828", light: "#265941" },
+          { dark: "#214E3A", light: "#387659" }
+        ];
+        const pal = palettes[tone % palettes.length];
+
+        // 4 layered evergreen spruce tiers
+        const tiers = [
+          { yB: -20, yT: -62, w: 32 },
+          { yB: -45, yT: -90, w: 26 },
+          { yB: -70, yT: -116, w: 20 },
+          { yB: -94, yT: -142, w: 13 }
+        ];
+
+        tiers.forEach((t) => {
+          g.appendChild(el("polygon", {
+            points: `0,${t.yT} -${t.w},${t.yB} ${t.w},${t.yB}`,
+            fill: pal.dark
+          }));
+          g.appendChild(el("polygon", {
+            points: `0,${t.yT} 0,${t.yB} ${t.w},${t.yB}`,
+            fill: pal.light
+          }));
+        });
+
+        return { node: g, shadow };
+      }
+
+      // Dense evergreen forest perimeter & groves (leaving sunny clearings open for grazing)
+      const treeLocations = [
+        // Upper background forest wall
+        [35, 325, 1.05, 0], [85, 318, 1.15, 1], [140, 332, 0.95, 2], [205, 315, 1.1, 0],
+        [275, 325, 1.0, 1], [350, 312, 1.2, 2], [430, 328, 1.05, 0], [510, 315, 1.15, 1],
+        [590, 330, 1.0, 2], [670, 315, 1.2, 0], [745, 328, 1.1, 1], [820, 316, 1.25, 2],
+        [895, 330, 1.15, 0], [960, 320, 1.2, 1],
+
+        // Left dense spruce grove
+        [28, 395, 1.3, 1], [78, 415, 1.15, 2], [32, 485, 1.35, 0], [88, 515, 1.1, 1],
+
+        // Center divider trees (between deer & cow meadows)
+        [495, 385, 1.15, 2], [535, 405, 0.95, 0],
+
+        // Right dense evergreen grove (behind tiger ambush rocks)
+        [925, 395, 1.35, 2], [972, 435, 1.45, 0], [915, 475, 1.25, 1], [965, 520, 1.35, 2],
+
+        // Foreground riverbanks & lower forest edge
+        [38, 825, 1.45, 0], [95, 855, 1.25, 2], [45, 945, 1.6, 1],
+        [445, 845, 1.1, 1], [485, 860, 0.95, 2],
+        [925, 820, 1.4, 2], [968, 885, 1.55, 0], [895, 955, 1.5, 1]
+      ];
+
+      treeLocations.forEach(([x, y, s, tone]) => {
+        const treeObj = createPineTreeNode(x, y, s, tone);
+        staticProps.push({
+          y,
+          node: treeObj.node,
+          shadow: treeObj.shadow
+        });
+      });
+
+      // Lush Ferns, Tall Ambush Grass & Wildflowers
+      function createFernOrGrassNode(x, y, scale, type, color) {
+        const g = el("g", {
+          transform: `translate(${x}, ${y}) scale(${scale})`,
+          class: "sway"
+        });
+
+        if (type === "fern") {
+          const fronds = [
+            "M0 0 Q-14 -12 -24 -6 Q-12 -4 0 0",
+            "M0 0 Q-10 -22 -16 -30 Q-6 -18 0 0",
+            "M0 0 Q0 -26 2 -36 Q5 -20 0 0",
+            "M0 0 Q10 -22 18 -28 Q8 -16 0 0",
+            "M0 0 Q14 -12 24 -5 Q12 -3 0 0"
+          ];
+          fronds.forEach((d, idx) => {
+            g.appendChild(el("path", {
+              d,
+              fill: idx % 2 === 0 ? "#40916C" : "#52B788"
+            }));
+          });
+        } else if (type === "tallGrass") {
+          // Tall golden-green reeds near tiger ambush & river edge
+          const blades = [
+            "M-6 0 Q-12 -24 -16 -42 Q-8 -24 -3 0 Z",
+            "M-2 0 Q-3 -30 -5 -48 Q1 -28 2 0 Z",
+            "M2 0 Q6 -28 11 -45 Q6 -24 5 0 Z",
+            "M5 0 Q13 -20 18 -35 Q10 -18 7 0 Z"
+          ];
+          blades.forEach((d, i) => {
+            g.appendChild(el("path", {
+              d,
+              fill: i % 2 === 0 ? "#74A84E" : "#99B85B"
+            }));
+          });
+        } else {
+          // Grazing clover & wildflower patch
+          g.appendChild(el("path", { d: "M-4 0 Q-7 -12 -10 -18 Q-4 -10 -1 0 Z", fill: "#52B788" }));
+          g.appendChild(el("path", { d: "M2 0 Q6 -12 9 -18 Q3 -10 0 0 Z", fill: "#40916C" }));
+          g.appendChild(el("circle", { cx: "-9", cy: "-19", r: "2.8", fill: color }));
+          g.appendChild(el("circle", { cx: "8", cy: "-19", r: "2.5", fill: "#FFF3B0" }));
+        }
+        return g;
+      }
+
+      const flowerColors = ["#FFF3B0", "#FDE047", "#F9A8D4", "#FDBA74", "#C4B5FD"];
+      const floraPoints = [
+        // Grazing meadow clover & grass (where deer & cows feed)
+        [185, 420, 1.0, "flower"], [245, 455, 1.1, "flower"], [315, 415, 0.95, "flower"],
+        [365, 470, 1.05, "flower"], [220, 495, 1.1, "flower"], [410, 435, 1.0, "flower"],
+        [585, 430, 1.05, "flower"], [645, 475, 1.1, "flower"], [710, 425, 0.95, "flower"],
+        [695, 495, 1.15, "flower"], [165, 865, 1.1, "flower"], [265, 895, 1.15, "flower"],
+        [355, 855, 1.05, "flower"], [575, 885, 1.1, "flower"],
+
+        // Ferns along forest edges
+        [115, 365, 1.1, "fern"], [135, 525, 1.2, "fern"], [470, 415, 1.0, "fern"],
+        [865, 375, 1.15, "fern"], [115, 825, 1.25, "fern"], [425, 835, 1.1, "fern"],
+        [845, 835, 1.25, "fern"], [735, 935, 1.3, "fern"],
+
+        // Tall camouflage grass near tiger & riverbanks
+        [785, 498, 1.25, "tallGrass"], [815, 506, 1.35, "tallGrass"], [865, 504, 1.3, "tallGrass"],
+        [895, 495, 1.2, "tallGrass"], [245, 565, 1.1, "tallGrass"], [545, 595, 1.1, "tallGrass"],
+        [665, 895, 1.3, "tallGrass"], [710, 905, 1.25, "tallGrass"]
+      ];
+
+      floraPoints.forEach(([x, y, s, type], idx) => {
+        staticProps.push({
+          y,
+          node: createFernOrGrassNode(x, y, s, type, flowerColors[idx % flowerColors.length])
+        });
+      });
+
+      // ---------------------------------------------------------
+      // 3. AUTONOMOUS WILDLIFE ENTITIES
+      // ---------------------------------------------------------
+
+      /**
+       * A. DEER (Roams grassy clearings, walks smoothly, lowers head to graze grass, twitches ears)
+       */
+      class Deer {
+        constructor(x, y, scale, bounds) {
+          this.x = x;
+          this.y = y;
+          this.scale = scale;
+          this.bounds = bounds;
+          this.facing = Math.random() > 0.5 ? 1 : -1;
+          this.state = "grazing"; // 'walking' | 'grazing' | 'alert'
+          this.timer = 1.5 + Math.random() * 3;
+          this.targetX = x;
+          this.targetY = y;
+          this.walkPhase = Math.random() * Math.PI * 2;
+          this.grazeAmount = 1; // 0 = head up, 1 = head down eating grass
+          this.earTwitch = 0;
+          this.sleepAmount = 0; // 0 = standing, 1 = lying down sleeping at night
+
+          this.buildSVG();
+        }
+
+        buildSVG() {
+          this.root = el("g");
+          this.flipGroup = el("g");
+          this.root.appendChild(this.flipGroup);
+
+          // Ground shadow
+          this.shadow = el("ellipse", {
+            cx: "0", cy: "2", rx: "22", ry: "6",
+            fill: "#14291A", opacity: "0.4"
+          });
+          this.flipGroup.appendChild(this.shadow);
+
+          // Upper body assembly (lowers onto meadow grass when sleeping at night)
+          this.bodyAssembly = el("g");
+          this.flipGroup.appendChild(this.bodyAssembly);
+
+          // Back legs
+          this.legBL = el("path", { d: "M-12 -18 L-14 0", stroke: "#8D5524", "stroke-width": "3.5", "stroke-linecap": "round" });
+          this.legFL = el("path", { d: "M10 -18 L11 0", stroke: "#8D5524", "stroke-width": "3.5", "stroke-linecap": "round" });
+          this.bodyAssembly.appendChild(this.legBL);
+          this.bodyAssembly.appendChild(this.legFL);
+
+          // Torso
+          this.bodyAssembly.appendChild(el("ellipse", {
+            cx: "-1", cy: "-21", rx: "17", ry: "9.5",
+            fill: "#C68642"
+          }));
+          // White belly & fawn spots
+          this.bodyAssembly.appendChild(el("path", {
+            d: "M-14 -16 Q0 -11 13 -16",
+            fill: "none", stroke: "#F5EBE0", "stroke-width": "3", "stroke-linecap": "round"
+          }));
+          this.bodyAssembly.appendChild(el("circle", { cx: "-6", cy: "-23", r: "1.4", fill: "#FFF8E7", opacity: "0.8" }));
+          this.bodyAssembly.appendChild(el("circle", { cx: "1", cy: "-24", r: "1.4", fill: "#FFF8E7", opacity: "0.8" }));
+          this.bodyAssembly.appendChild(el("circle", { cx: "-2", cy: "-20", r: "1.3", fill: "#FFF8E7", opacity: "0.8" }));
+
+          // Short white tail
+          this.bodyAssembly.appendChild(el("path", {
+            d: "M-17 -24 L-22 -28 L-18 -20 Z",
+            fill: "#FFF8E7"
+          }));
+
+          // Front legs
+          this.legBR = el("path", { d: "M-9 -18 L-9 1", stroke: "#A86832", "stroke-width": "3.8", "stroke-linecap": "round" });
+          this.legFR = el("path", { d: "M13 -18 L14 1", stroke: "#A86832", "stroke-width": "3.8", "stroke-linecap": "round" });
+          this.bodyAssembly.appendChild(this.legBR);
+          this.bodyAssembly.appendChild(this.legFR);
+
+          // Articulated Neck & Head Group (pivots down to eat grass)
+          this.neckGroup = el("g", { transform: "translate(12, -24)" });
+          this.neckGroup.appendChild(el("path", {
+            d: "M-3 3 L5 -15 L11 -13 L4 5 Z",
+            fill: "#C68642"
+          }));
+          // Head
+          this.neckGroup.appendChild(el("ellipse", {
+            cx: "10", cy: "-15", rx: "7.5", ry: "4.8",
+            fill: "#D49555"
+          }));
+          // Nose & Eye
+          this.neckGroup.appendChild(el("circle", { cx: "17", cy: "-14.5", r: "1.8", fill: "#2B1D14" }));
+          this.neckGroup.appendChild(el("circle", { cx: "11", cy: "-16", r: "1.3", fill: "#1E1B18" }));
+
+          // Ears
+          this.ear = el("ellipse", { cx: "5", cy: "-20", rx: "2.2", ry: "5", transform: "rotate(-25 5 -20)", fill: "#B57336" });
+          this.neckGroup.appendChild(this.ear);
+
+          // Delicate Antlers (on adult deer)
+          if (this.scale >= 0.95) {
+            this.neckGroup.appendChild(el("path", {
+              d: "M6 -19 L3 -29 M4 -24 L9 -27 M5 -26 L1 -28",
+              stroke: "#E6CCB2", "stroke-width": "1.6", "stroke-linecap": "round", fill: "none"
+            }));
+          }
+
+          this.bodyAssembly.appendChild(this.neckGroup);
+          bindAnimalClick(this.root, this);
+        }
+
+        getDetails() {
+          const isFawn = this.scale < 0.9;
+          const statusMap = {
+            sleeping: "Sleeping in Meadow Grass",
+            walking: "Roaming Forest Clearing",
+            grazing: "Grazing Clover & Grass",
+            alert: "Listening & Scanning Trees"
+          };
+          return {
+            emoji: "🦌",
+            name: isFawn ? "Spotted Forest Fawn" : "Evergreen Stag",
+            scientific: "Axis axis · Forest Cervid",
+            diet: "Herbivore (Clover & Shoots)",
+            rhythm: "Diurnal · Sleeps at Night",
+            habitat: "Sunlit Western Forest Glade",
+            bio: isFawn
+              ? "Young dappled fawn staying close to the herd in the sunlit meadow, nibbling tender clover blades."
+              : "Agile forest deer that grazes peacefully in open clearings by day and beds down in tall grass after dusk.",
+            status: statusMap[this.state] || "Grazing Meadow",
+            x: this.x,
+            y: this.y,
+            rx: 26 * this.scale,
+            ry: 11 * this.scale
+          };
+        }
+
+        pickNewWaypoint() {
+          this.targetX = this.bounds.minX + Math.random() * (this.bounds.maxX - this.bounds.minX);
+          this.targetY = this.bounds.minY + Math.random() * (this.bounds.maxY - this.bounds.minY);
+        }
+
+        update(dt, time, nightFactor = 0) {
+          this.timer -= dt;
+          const isNightSleep = nightFactor > 0.62;
+          const targetSleep = isNightSleep ? 1 : 0;
+          this.sleepAmount += (targetSleep - this.sleepAmount) * Math.min(1, dt * 1.8);
+
+          if (isNightSleep) {
+            // Lie down peacefully in the meadow with gentle breathing motion
+            this.state = "sleeping";
+            this.grazeAmount += (0.28 - this.grazeAmount) * Math.min(1, dt * 2.5);
+            this.earTwitch = 0;
+          } else {
+            this.earTwitch = Math.sin(time * 9 + this.x) > 0.92 ? 12 : 0;
+
+            if (this.state === "sleeping") {
+              this.state = "grazing";
+              this.timer = 2 + Math.random() * 2;
+            }
+
+            if (this.state === "walking") {
+              const dx = this.targetX - this.x;
+              const dy = this.targetY - this.y;
+              const dist = Math.hypot(dx, dy);
+
+              if (dist < 4 || this.timer <= 0) {
+                this.state = "grazing";
+                this.timer = 3.5 + Math.random() * 4.5;
+              } else {
+                const speed = 26;
+                this.x += (dx / dist) * speed * dt;
+                this.y += (dy / dist) * speed * dt;
+                this.facing = dx >= 0 ? 1 : -1;
+                this.walkPhase += dt * 8.5;
+              }
+              this.grazeAmount += (0 - this.grazeAmount) * Math.min(1, dt * 5);
+            } else if (this.state === "grazing") {
+              // Lower head to eat grass, occasionally lift head to look around
+              const nibble = Math.sin(time * 7) * 0.08;
+              const targetGraze = this.timer < 1.1 ? 0 : 1 + nibble;
+              this.grazeAmount += (targetGraze - this.grazeAmount) * Math.min(1, dt * 4);
+
+              if (this.timer <= 0) {
+                if (Math.random() < 0.72) {
+                  this.state = "walking";
+                  this.pickNewWaypoint();
+                  this.timer = 6 + Math.random() * 5;
+                } else {
+                  this.state = "alert";
+                  this.timer = 1.8 + Math.random() * 1.5;
+                }
+              }
+            } else {
+              // Alert / looking around
+              this.grazeAmount += (0 - this.grazeAmount) * Math.min(1, dt * 6);
+              if (this.timer <= 0) {
+                this.state = "walking";
+                this.pickNewWaypoint();
+                this.timer = 5 + Math.random() * 4;
+              }
+            }
+          }
+
+          // Fold legs & lower torso onto grass when sleeping
+          const stride = this.state === "walking" ? Math.sin(this.walkPhase) * 5 : 0;
+          const legBottomY = 1 - this.sleepAmount * 14;
+          const legBackY = 0 - this.sleepAmount * 13;
+          this.legFR.setAttribute("d", `M13 -18 L${14 + stride - this.sleepAmount * 5} ${legBottomY.toFixed(1)}`);
+          this.legBL.setAttribute("d", `M-12 -18 L${-14 + stride + this.sleepAmount * 5} ${legBackY.toFixed(1)}`);
+          this.legFL.setAttribute("d", `M10 -18 L${11 - stride - this.sleepAmount * 4} ${legBackY.toFixed(1)}`);
+          this.legBR.setAttribute("d", `M-9 -18 L${-9 - stride + this.sleepAmount * 4} ${legBottomY.toFixed(1)}`);
+
+          const sleepDropY = this.sleepAmount * 11;
+          const breathY = this.sleepAmount * Math.sin(time * 2.1 + this.x) * 0.7;
+          this.bodyAssembly.setAttribute("transform", `translate(0, ${(sleepDropY + breathY).toFixed(2)})`);
+
+          // Neck pitch down to grass level
+          const neckAngle = this.grazeAmount * 68;
+          this.neckGroup.setAttribute("transform", `translate(12, -24) rotate(${neckAngle})`);
+          this.ear.setAttribute("transform", `rotate(${-25 + this.earTwitch} 5 -20)`);
+
+          this.root.setAttribute("transform", `translate(${this.x.toFixed(1)}, ${this.y.toFixed(1)}) scale(${this.scale})`);
+          this.flipGroup.setAttribute("transform", `scale(${this.facing}, 1)`);
+        }
+      }
+
+      /**
+       * B. COWS / CATTLE (Grazing peacefully in the sunny meadow, chewing & swishing tails;
+       *    lies down to rest/sleep peacefully in the meadow during deep night)
+       */
+      class Cow {
+        constructor(x, y, scale, bounds, spotColor) {
+          this.x = x;
+          this.y = y;
+          this.scale = scale;
+          this.bounds = bounds;
+          this.spotColor = spotColor;
+          this.facing = Math.random() > 0.5 ? 1 : -1;
+          this.state = "grazing";
+          this.timer = 2 + Math.random() * 4;
+          this.targetX = x;
+          this.targetY = y;
+          this.walkPhase = Math.random() * 6;
+          this.grazeAmount = 0.85;
+          this.sleepAmount = 0;
+
+          this.buildSVG();
+        }
+
+        buildSVG() {
+          this.root = el("g");
+          this.flipGroup = el("g");
+          this.root.appendChild(this.flipGroup);
+
+          // Ground shadow
+          this.shadow = el("ellipse", {
+            cx: "0", cy: "2", rx: "28", ry: "7.5",
+            fill: "#14291A", opacity: "0.42"
+          });
+          this.flipGroup.appendChild(this.shadow);
+
+          // Upper body assembly (lowers onto meadow grass when sleeping at night)
+          this.bodyAssembly = el("g");
+          this.flipGroup.appendChild(this.bodyAssembly);
+
+          // Back legs
+          this.legBL = el("path", { d: "M-16 -18 L-16 1", stroke: "#D6CCC2", "stroke-width": "4.5", "stroke-linecap": "round" });
+          this.legFL = el("path", { d: "M13 -18 L13 1", stroke: "#D6CCC2", "stroke-width": "4.5", "stroke-linecap": "round" });
+          this.bodyAssembly.appendChild(this.legBL);
+          this.bodyAssembly.appendChild(this.legFL);
+
+          // Swishing tail
+          this.tail = el("path", {
+            d: "M-23 -28 Q-28 -18 -26 -10",
+            stroke: "#4A3B32", "stroke-width": "2.4", "stroke-linecap": "round", fill: "none"
+          });
+          this.bodyAssembly.appendChild(this.tail);
+
+          // Sturdy Cow Body
+          this.bodyAssembly.appendChild(el("rect", {
+            x: "-23", y: "-34", width: "44", height: "21", rx: "10",
+            fill: "#FAF6F0"
+          }));
+          // Characteristic Cow Patches
+          this.bodyAssembly.appendChild(el("ellipse", { cx: "-8", cy: "-27", rx: "8", ry: "6", fill: this.spotColor }));
+          this.bodyAssembly.appendChild(el("ellipse", { cx: "8", cy: "-23", rx: "7", ry: "5", fill: this.spotColor }));
+
+          // Front legs
+          this.legBR = el("path", { d: "M-12 -18 L-12 2", stroke: "#F5EBE0", "stroke-width": "4.8", "stroke-linecap": "round" });
+          this.legFR = el("path", { d: "M16 -18 L16 2", stroke: "#F5EBE0", "stroke-width": "4.8", "stroke-linecap": "round" });
+          this.bodyAssembly.appendChild(this.legBR);
+          this.bodyAssembly.appendChild(this.legFR);
+
+          // Head & Muzzle Group (lowers to eat grass)
+          this.headGroup = el("g", { transform: "translate(18, -26)" });
+          // Head
+          this.headGroup.appendChild(el("rect", {
+            x: "-2", y: "-8", width: "16", height: "13", rx: "6",
+            fill: "#FAF6F0"
+          }));
+          this.headGroup.appendChild(el("circle", { cx: "4", cy: "-4", r: "4", fill: this.spotColor }));
+          // Pink Muzzle
+          this.headGroup.appendChild(el("ellipse", { cx: "13", cy: "1", rx: "4.5", ry: "4", fill: "#F4ACB7" }));
+          // Eye & Small Horn & Ear
+          this.headGroup.appendChild(el("circle", { cx: "8", cy: "-3", r: "1.4", fill: "#1E1B18" }));
+          this.headGroup.appendChild(el("path", { d: "M1 -8 Q-1 -13 2 -14", stroke: "#E6CCB2", "stroke-width": "2.2", "stroke-linecap": "round", fill: "none" }));
+          this.headGroup.appendChild(el("ellipse", { cx: "0", cy: "-4", rx: "4", ry: "2.2", fill: this.spotColor }));
+
+          this.bodyAssembly.appendChild(this.headGroup);
+          bindAnimalClick(this.root, this);
+        }
+
+        getDetails() {
+          const statusMap = {
+            sleeping: "Resting in Night Meadow",
+            walking: "Strolling Pasture Clearing",
+            grazing: "Grazing & Chewing Cud"
+          };
+          return {
+            emoji: "🐄",
+            name: "Woodland Pasture Cow",
+            scientific: "Bos taurus · Meadow Grazer",
+            diet: "Herbivore (Meadow Grass)",
+            rhythm: "Diurnal · Rests at Night",
+            habitat: "Eastern Sunny Forest Clearing",
+            bio: "Docile spotted grazer that spends daylight hours cropping lush meadow grass and swishing away forest insects.",
+            status: statusMap[this.state] || "Grazing Grass",
+            x: this.x,
+            y: this.y,
+            rx: 32 * this.scale,
+            ry: 12 * this.scale
+          };
+        }
+
+        update(dt, time, nightFactor = 0) {
+          this.timer -= dt;
+          const isNightSleep = nightFactor > 0.62;
+          const targetSleep = isNightSleep ? 1 : 0;
+          this.sleepAmount += (targetSleep - this.sleepAmount) * Math.min(1, dt * 1.6);
+
+          if (isNightSleep) {
+            this.state = "sleeping";
+            this.grazeAmount += (0.25 - this.grazeAmount) * Math.min(1, dt * 2.5);
+          } else {
+            if (this.state === "sleeping") {
+              this.state = "grazing";
+              this.timer = 2.5 + Math.random() * 3;
+            }
+
+            if (this.state === "walking") {
+              const dx = this.targetX - this.x;
+              const dy = this.targetY - this.y;
+              const dist = Math.hypot(dx, dy);
+
+              if (dist < 4 || this.timer <= 0) {
+                this.state = "grazing";
+                this.timer = 5 + Math.random() * 6;
+              } else {
+                const speed = 14; // Slow peaceful cow stroll
+                this.x += (dx / dist) * speed * dt;
+                this.y += (dy / dist) * speed * dt;
+                this.facing = dx >= 0 ? 1 : -1;
+                this.walkPhase += dt * 5;
+              }
+              this.grazeAmount += (0.15 - this.grazeAmount) * Math.min(1, dt * 3);
+            } else {
+              // Grazing & chewing cud
+              const chew = Math.sin(time * 5.5 + this.x) * 0.08;
+              this.grazeAmount += (0.95 + chew - this.grazeAmount) * Math.min(1, dt * 3);
+
+              if (this.timer <= 0) {
+                this.state = "walking";
+                this.targetX = this.bounds.minX + Math.random() * (this.bounds.maxX - this.bounds.minX);
+                this.targetY = this.bounds.minY + Math.random() * (this.bounds.maxY - this.bounds.minY);
+                this.timer = 6 + Math.random() * 5;
+              }
+            }
+          }
+
+          const stride = this.state === "walking" ? Math.sin(this.walkPhase) * 3.5 : 0;
+          const legY2 = 2 - this.sleepAmount * 14;
+          const legY1 = 1 - this.sleepAmount * 13;
+          this.legFR.setAttribute("d", `M16 -18 L${16 + stride - this.sleepAmount * 5} ${legY2.toFixed(1)}`);
+          this.legBL.setAttribute("d", `M-16 -18 L${-16 + stride + this.sleepAmount * 5} ${legY1.toFixed(1)}`);
+          this.legFL.setAttribute("d", `M13 -18 L${13 - stride - this.sleepAmount * 4} ${legY1.toFixed(1)}`);
+          this.legBR.setAttribute("d", `M-12 -18 L${-12 - stride + this.sleepAmount * 4} ${legY2.toFixed(1)}`);
+
+          const sleepDropY = this.sleepAmount * 12;
+          const breathY = this.sleepAmount * Math.sin(time * 1.9 + this.y) * 0.8;
+          this.bodyAssembly.setAttribute("transform", `translate(0, ${(sleepDropY + breathY).toFixed(2)})`);
+
+          // Tail swish (calmer while sleeping)
+          const swishAmp = 5 * (1 - this.sleepAmount * 0.75);
+          const swish = Math.sin(time * 4.2 + this.y) * swishAmp;
+          this.tail.setAttribute("d", `M-23 -28 Q${-28 + swish} -18 ${-26 + swish * 1.4} -10`);
+
+          // Head pitch down to grass
+          const headAngle = this.grazeAmount * 48;
+          this.headGroup.setAttribute("transform", `translate(18, -26) rotate(${headAngle})`);
+
+          this.root.setAttribute("transform", `translate(${this.x.toFixed(1)}, ${this.y.toFixed(1)}) scale(${this.scale})`);
+          this.flipGroup.setAttribute("transform", `scale(${this.facing}, 1)`);
+        }
+      }
+
+      /**
+       * C. BENGAL TIGER (Camouflaged near tall grass & rocks at the forest edge;
+       *    rests with subtle breathing & tail flicks, crouches in ambush, and catches moonlight in its amber eyes at night)
+       */
+      class Tiger {
+        constructor(x, y, scale) {
+          this.x = x;
+          this.y = y;
+          this.scale = scale;
+          this.facing = -1; // Facing left toward the deer meadow
+          this.state = "resting"; // 'resting' | 'crouching' | 'stalking'
+          this.timer = 4.5;
+          this.crouchAmount = 0; // 0 = relaxed rest, 1 = low predatory crouch
+          this.homeX = x;
+
+          this.buildSVG();
+        }
+
+        buildSVG() {
+          this.root = el("g");
+          this.flipGroup = el("g");
+          this.root.appendChild(this.flipGroup);
+
+          // Ground shadow
+          this.shadow = el("ellipse", {
+            cx: "0", cy: "2", rx: "34", ry: "8",
+            fill: "#0D1F14", opacity: "0.5"
+          });
+          this.flipGroup.appendChild(this.shadow);
+
+          // Articulated Tail (flicks when watching prey)
+          this.tail = el("path", {
+            d: "M-26 -14 Q-42 -16 -46 -26",
+            stroke: "#E86F24", "stroke-width": "4.2", "stroke-linecap": "round", fill: "none"
+          });
+          this.flipGroup.appendChild(this.tail);
+
+          // Back Paws
+          this.flipGroup.appendChild(el("ellipse", { cx: "-18", cy: "-3", rx: "8", ry: "4", fill: "#D9621C" }));
+
+          // Muscular Tiger Body (shifts down during ambush crouch)
+          this.bodyGroup = el("g");
+          this.torso = el("ellipse", {
+            cx: "-2", cy: "-14", rx: "26", ry: "11.5",
+            fill: "#F27D24"
+          });
+          this.bodyGroup.appendChild(this.torso);
+
+          // White Underbelly
+          this.bodyGroup.appendChild(el("path", {
+            d: "M-20 -7 Q-2 -3 16 -7",
+            stroke: "#FFF8F0", "stroke-width": "4", "stroke-linecap": "round", fill: "none"
+          }));
+
+          // Bold Black Tiger Stripes
+          const stripes = [
+            "M-14 -24 L-12 -14",
+            "M-7 -25 L-6 -12",
+            "M0 -25 L-1 -13",
+            "M7 -24 L6 -13",
+            "M13 -22 L12 -14"
+          ];
+          stripes.forEach((d) => {
+            this.bodyGroup.appendChild(el("path", {
+              d, stroke: "#1C1917", "stroke-width": "2.6", "stroke-linecap": "round"
+            }));
+          });
+
+          // Tiger Head (stares intently toward deer)
+          this.head = el("g", { transform: "translate(23, -18)" });
+          this.head.appendChild(el("circle", { cx: "0", cy: "0", r: "9.5", fill: "#F27D24" }));
+          // White cheek ruff
+          this.head.appendChild(el("ellipse", { cx: "2", cy: "3", rx: "7", ry: "4.5", fill: "#FFF8F0" }));
+          // Ears
+          this.head.appendChild(el("circle", { cx: "-5", cy: "-8", r: "3.2", fill: "#1C1917" }));
+          this.head.appendChild(el("circle", { cx: "3", cy: "-8", r: "3.2", fill: "#1C1917" }));
+          // Piercing Amber Eyes & Nose
+          this.head.appendChild(el("circle", { cx: "5", cy: "-2", r: "1.6", fill: "#FDE047" }));
+          this.head.appendChild(el("circle", { cx: "5.4", cy: "-2", r: "0.8", fill: "#000" }));
+          this.head.appendChild(el("polygon", { points: "9,0 7,2 10,2", fill: "#BE123C" }));
+          // Cheek stripes
+          this.head.appendChild(el("path", { d: "M-3 -3 L1 -2 M-3 1 L0 1", stroke: "#1C1917", "stroke-width": "1.6" }));
+
+          this.bodyGroup.appendChild(this.head);
+          this.flipGroup.appendChild(this.bodyGroup);
+
+          // Front Paws stretched forward (ready to pounce or resting)
+          this.frontPaws = el("g");
+          this.frontPaws.appendChild(el("rect", { x: "14", y: "-6", width: "18", height: "6", rx: "3", fill: "#F27D24" }));
+          this.frontPaws.appendChild(el("ellipse", { cx: "31", cy: "-2.5", rx: "5", ry: "3", fill: "#FFF8F0" }));
+          this.flipGroup.appendChild(this.frontPaws);
+
+          // Un-darkened Moonlit Amber Eye-Shine Glint (rendered in nocturnalGlowLayer)
+          this.eyeGlowNode = el("g", { opacity: "0" });
+          this.eyeGlowNode.appendChild(el("circle", { cx: "0", cy: "0", r: "5.5", fill: "#FDE047", opacity: "0.35" }));
+          this.eyeGlowNode.appendChild(el("circle", { cx: "0", cy: "0", r: "1.9", fill: "#FEF08A" }));
+          nocturnalGlowLayer.appendChild(this.eyeGlowNode);
+          bindAnimalClick(this.root, this);
+        }
+
+        getDetails() {
+          const statusMap = {
+            resting: "Resting in Shaded Cover",
+            crouching: "Stalking Prey in Ambush"
+          };
+          return {
+            emoji: "🐅",
+            name: "Bengal Forest Tiger",
+            scientific: "Panthera tigris tigris",
+            diet: "Apex Carnivore",
+            rhythm: "Crepuscular & Nocturnal",
+            habitat: "Mossy Boulders & Tall Reeds",
+            bio: "Camouflaged among tall reeds and mossy boulders at the forest edge, patiently waiting for an ambush opportunity.",
+            status: statusMap[this.state] || "Watching Clearing",
+            x: this.x,
+            y: this.y,
+            rx: 38 * this.scale,
+            ry: 13 * this.scale
+          };
+        }
+
+        update(dt, time, nearestDeer, nightFactor = 0) {
+          this.timer -= dt;
+
+          // Face the nearest deer in the meadow
+          if (nearestDeer) {
+            this.facing = nearestDeer.x < this.x ? -1 : 1;
+          }
+
+          if (this.state === "resting") {
+            this.crouchAmount += (0 - this.crouchAmount) * Math.min(1, dt * 3);
+            if (this.timer <= 0) {
+              this.state = "crouching";
+              this.timer = 4.5 + Math.random() * 3;
+            }
+          } else if (this.state === "crouching") {
+            // Low predatory ambush crouch, creeping slightly forward (prowls slightly wider at night)
+            this.crouchAmount += (1 - this.crouchAmount) * Math.min(1, dt * 4);
+            const prowlRange = 8 + nightFactor * 14;
+            const creep = Math.sin(time * 2.5) * (3 + nightFactor * 4);
+            this.x = this.homeX + this.facing * (prowlRange + creep);
+
+            if (this.timer <= 0) {
+              this.state = "resting";
+              this.timer = 5 + Math.random() * 4;
+            }
+          }
+
+          // Subtle breathing + low crouch drop
+          const breath = Math.sin(time * 2.8) * 0.8;
+          const dropY = this.crouchAmount * 4.5;
+          const headX = 23 + this.crouchAmount * 3;
+          const headY = -18 + this.crouchAmount * 3.5;
+          this.bodyGroup.setAttribute("transform", `translate(0, ${(dropY + breath).toFixed(2)})`);
+          this.head.setAttribute("transform", `translate(${headX}, ${headY})`);
+
+          // Tail flicking (faster & sharper when crouching/waiting for prey)
+          const flickSpeed = this.state === "crouching" ? 6.5 : 2.2;
+          const flickAmp = this.state === "crouching" ? 9 : 4;
+          const tailTipY = -26 + Math.sin(time * flickSpeed) * flickAmp;
+          this.tail.setAttribute("d", `M-26 ${-14 + dropY} Q-42 -16 -46 ${tailTipY.toFixed(1)}`);
+
+          this.root.setAttribute("transform", `translate(${this.x.toFixed(1)}, ${this.y.toFixed(1)}) scale(${this.scale})`);
+          this.flipGroup.setAttribute("transform", `scale(${this.facing}, 1)`);
+
+          // Update Moonlit Amber Eye-Shine position & opacity
+          const worldEyeX = this.x + this.facing * (headX + 5) * this.scale;
+          const worldEyeY = this.y + (dropY + breath + headY - 2) * this.scale;
+          const eyePulse = 0.78 + Math.sin(time * 3.1) * 0.22;
+          this.eyeGlowNode.setAttribute("transform", `translate(${worldEyeX.toFixed(1)}, ${worldEyeY.toFixed(1)})`);
+          this.eyeGlowNode.setAttribute("opacity", (nightFactor * 0.92 * eyePulse).toFixed(2));
+        }
+      }
+
+      /**
+       * D. CROCODILE (Partially submerged in the river;
+       *    reflects a faint amber-gold eye glint above dark water at night)
+       */
+      class Crocodile {
+        constructor(x, y, scale) {
+          this.x = x;
+          this.y = y;
+          this.scale = scale;
+          this.dir = 1;
+          this.buildSVG();
+        }
+
+        buildSVG() {
+          // 1. Underwater Submerged Silhouette (inside river clip & beneath water surface)
+          this.underwaterGroup = el("g", { opacity: "0.52" });
+          this.underwaterBody = el("g");
+          // Submerged torso & tail
+          this.underwaterBody.appendChild(el("path", {
+            d: "M-65 4 Q-35 12 0 10 Q32 8 56 3 Q35 -4 0 -4 Q-35 -3 -65 4 Z",
+            fill: "#1B3A2B"
+          }));
+          // Underwater splayed legs
+          this.underwaterBody.appendChild(el("path", {
+            d: "M-18 8 L-28 20 M16 7 L10 19",
+            stroke: "#1B3A2B", "stroke-width": "5", "stroke-linecap": "round"
+          }));
+          this.underwaterGroup.appendChild(this.underwaterBody);
+          submergedCrocLayer.appendChild(this.underwaterGroup);
+
+          // 2. Above-Water Emergent Parts (Eyes, Snout, Back Scutes & Water Ripples)
+          this.surfaceGroup = el("g");
+          this.surfaceFlip = el("g");
+          this.surfaceGroup.appendChild(this.surfaceFlip);
+
+          // Waterline V-wake ripples
+          this.wake = el("path", {
+            d: "M64 0 Q20 -12 -58 -7 M64 0 Q20 12 -58 7",
+            stroke: "#E0FBFC", "stroke-width": "1.8", "stroke-linecap": "round", fill: "none", opacity: "0.55"
+          });
+          this.surfaceFlip.appendChild(this.wake);
+
+          // Emergent Ridged Back Scutes
+          this.surfaceFlip.appendChild(el("path", {
+            d: "M-22 0 Q-8 -6 8 0 Z",
+            fill: "#2D4A36"
+          }));
+          [-16, -10, -4, 2].forEach((sx) => {
+            this.surfaceFlip.appendChild(el("polygon", {
+              points: `${sx - 2},-2 ${sx},-6 ${sx + 2},-2`,
+              fill: "#3E6349"
+            }));
+          });
+
+          // Emergent Raised Brow / Eyes & Snout Tip
+          this.surfaceFlip.appendChild(el("path", {
+            d: "M16 0 Q24 -7 33 -1 L58 -1 Q63 -3 64 0 Z",
+            fill: "#355840"
+          }));
+          // Golden Crocodile Eye above water
+          this.surfaceFlip.appendChild(el("circle", { cx: "26", cy: "-4.5", r: "2.4", fill: "#FACC15" }));
+          this.surfaceFlip.appendChild(el("rect", { x: "25.5", y: "-6.2", width: "1", height: "3.4", fill: "#000" }));
+          // Nostril bump at snout tip
+          this.surfaceFlip.appendChild(el("circle", { cx: "60", cy: "-2", r: "1.3", fill: "#1B3A2B" }));
+
+          surfaceCrocLayer.appendChild(this.surfaceGroup);
+
+          // Un-darkened Nocturnal Amber-Gold Eye Glint above the dark river
+          this.eyeGlint = el("g", { opacity: "0" });
+          this.eyeGlint.appendChild(el("circle", { cx: "0", cy: "0", r: "5", fill: "#F59E0B", opacity: "0.35" }));
+          this.eyeGlint.appendChild(el("circle", { cx: "0", cy: "0", r: "1.8", fill: "#FDE047" }));
+          nocturnalGlowLayer.appendChild(this.eyeGlint);
+
+          bindAnimalClick(this.surfaceGroup, this);
+          bindAnimalClick(this.underwaterGroup, this);
+        }
+
+        getDetails() {
+          return {
+            emoji: "🐊",
+            name: "Marsh River Crocodile",
+            scientific: "Crocodylus palustris",
+            diet: "Aquatic Ambush Predator",
+            rhythm: "Diurnal & Nocturnal Hunter",
+            habitat: "Translucent Forest Stream",
+            bio: "Glides silently beneath the current with only its golden eyes, nostrils, and armored back scutes breaking the surface.",
+            status: "Cruising Submerged in Stream",
+            x: this.x,
+            y: this.y,
+            rx: 52 * this.scale,
+            ry: 15 * this.scale
+          };
+        }
+
+        update(dt, time, nightFactor = 0) {
+          // Slow stealthy patrol along the river current
+          this.x += this.dir * 13 * dt;
+          if (this.x > 790) this.dir = -1;
+          if (this.x < 210) this.dir = 1;
+
+          // Follow gentle S-curve of the river center
+          const riverCenterY = 678 + Math.sin(this.x * 0.008) * 18 + Math.sin(time * 1.4) * 1.8;
+          this.y = riverCenterY;
+
+          const tailWag = Math.sin(time * 2.2) * 3;
+          this.underwaterBody.setAttribute("transform", `scale(${this.dir}, 1) skewY(${tailWag * 0.3})`);
+          this.underwaterGroup.setAttribute("transform", `translate(${this.x.toFixed(1)}, ${this.y.toFixed(1)}) scale(${this.scale})`);
+
+          this.surfaceGroup.setAttribute("transform", `translate(${this.x.toFixed(1)}, ${this.y.toFixed(1)}) scale(${this.scale})`);
+          this.surfaceFlip.setAttribute("transform", `scale(${this.dir}, 1)`);
+
+          // Update Crocodile Eye-Shine Glint
+          const worldEyeX = this.x + this.dir * 26 * this.scale;
+          const worldEyeY = this.y - 4.5 * this.scale;
+          this.eyeGlint.setAttribute("transform", `translate(${worldEyeX.toFixed(1)}, ${worldEyeY.toFixed(1)})`);
+          this.eyeGlint.setAttribute("opacity", (nightFactor * 0.95).toFixed(2));
+        }
+      }
+
+      /**
+       * E. FISH (Swimming beneath the semi-transparent river surface)
+       */
+      class RiverFish {
+        constructor(x, y, scale, color, speed) {
+          this.x = x;
+          this.y = y;
+          this.baseY = y;
+          this.scale = scale;
+          this.color = color;
+          this.speed = speed;
+          this.dir = Math.random() > 0.5 ? 1 : -1;
+          this.jumpTimer = 4 + Math.random() * 12;
+          this.isJumping = false;
+          this.jumpProgress = 0;
+
+          this.buildSVG();
+        }
+
+        buildSVG() {
+          // Underwater fish node
+          this.node = el("g");
+          this.body = el("g");
+          this.body.appendChild(el("path", {
+            d: "M-12 0 Q-3 -6 10 0 Q-3 6 -12 0 Z",
+            fill: this.color
+          }));
+          this.tail = el("polygon", {
+            points: "-11,0 -18,-5 -18,5",
+            fill: this.color
+          });
+          this.body.appendChild(this.tail);
+          this.node.appendChild(this.body);
+          underwaterFishLayer.appendChild(this.node);
+
+          // Above-water jumping fish + splash ring
+          this.jumpNode = el("g", { opacity: "0" });
+          this.jumpFish = el("path", {
+            d: "M-11 0 Q-2 -5 9 0 Q-2 5 -11 0 L-16 -4 L-16 4 Z",
+            fill: "#FF9F1C"
+          });
+          this.splashRing = el("ellipse", {
+            cx: "0", cy: "0", rx: "12", ry: "4",
+            fill: "none", stroke: "#FFF", "stroke-width": "1.6"
+          });
+          this.jumpNode.appendChild(this.splashRing);
+          this.jumpNode.appendChild(this.jumpFish);
+          jumpingFishLayer.appendChild(this.jumpNode);
+
+          bindAnimalClick(this.node, this);
+          bindAnimalClick(this.jumpNode, this);
+        }
+
+        getDetails() {
+          return {
+            emoji: "🐟",
+            name: "Forest Stream Trout",
+            scientific: "Salmo trutta · Freshwater",
+            diet: "Omnivore (Insects & Larvae)",
+            rhythm: "Active Day & Night",
+            habitat: "Clear Pebble-Bed Stream",
+            bio: "Swims through cool, oxygenated forest currents among river stones and occasionally leaps above the surface for insects.",
+            status: this.isJumping ? "Leaping Above Water!" : "Swimming Underwater",
+            x: this.x,
+            y: this.y,
+            rx: 20 * this.scale,
+            ry: 9 * this.scale
+          };
+        }
+
+        update(dt, time) {
+          this.x += this.dir * this.speed * dt;
+          if (this.x > 960) this.dir = -1;
+          if (this.x < 40) this.dir = 1;
+
+          // Keep fish swimming within river channel
+          const channelOffset = Math.sin(this.x * 0.008) * 16;
+          this.y = this.baseY + channelOffset + Math.sin(time * 2.5 + this.baseY) * 4;
+
+          const wag = Math.sin(time * 14 + this.x) * 18;
+          this.tail.setAttribute("transform", `rotate(${wag} -11 0)`);
+
+          // Occasional playful leap above water surface
+          if (!this.isJumping) {
+            this.jumpTimer -= dt;
+            if (this.jumpTimer <= 0) {
+              this.isJumping = true;
+              this.jumpProgress = 0;
+              this.jumpTimer = 9 + Math.random() * 14;
+            }
+            this.node.setAttribute("opacity", "0.85");
+            this.jumpNode.setAttribute("opacity", "0");
+            this.node.setAttribute("transform", `translate(${this.x.toFixed(1)}, ${this.y.toFixed(1)}) scale(${this.dir * this.scale}, ${this.scale})`);
+          } else {
+            this.jumpProgress += dt * 1.45;
+            if (this.jumpProgress >= 1) {
+              this.isJumping = false;
+              this.jumpNode.setAttribute("opacity", "0");
+            } else {
+              this.node.setAttribute("opacity", "0");
+              this.jumpNode.setAttribute("opacity", "1");
+              const arcY = Math.sin(this.jumpProgress * Math.PI) * 34;
+              const pitch = (0.5 - this.jumpProgress) * 75 * this.dir;
+              this.jumpNode.setAttribute("transform", `translate(${this.x.toFixed(1)}, ${this.y.toFixed(1)})`);
+              this.jumpFish.setAttribute("transform", `translate(0, ${-arcY.toFixed(1)}) rotate(${pitch.toFixed(1)}) scale(${this.dir * this.scale}, ${this.scale})`);
+              this.splashRing.setAttribute("rx", (8 + this.jumpProgress * 18).toFixed(1));
+              this.splashRing.setAttribute("opacity", (1 - this.jumpProgress).toFixed(2));
+            }
+          }
+        }
+      }
+
+      /**
+       * F. BIRDS (Soaring across canopy & sky + songbirds hopping/perching on evergreen branches)
+       */
+      class FlyingBird {
+        constructor(y, speed, scale, color) {
+          this.x = Math.random() * 1000;
+          this.baseY = y;
+          this.speed = speed;
+          this.scale = scale;
+          this.color = color;
+          this.dir = Math.random() > 0.5 ? 1 : -1;
+
+          this.node = el("g");
+          this.wingL = el("path", { d: "M0 0 Q-8 -12 -18 -4", stroke: color, "stroke-width": "2.6", "stroke-linecap": "round", fill: "none" });
+          this.wingR = el("path", { d: "M0 0 Q8 -12 18 -4", stroke: color, "stroke-width": "2.6", "stroke-linecap": "round", fill: "none" });
+          this.node.appendChild(this.wingL);
+          this.node.appendChild(this.wingR);
+          aerialLayer.appendChild(this.node);
+          bindAnimalClick(this.node, this);
+        }
+
+        getDetails() {
+          return {
+            emoji: "🦅",
+            name: "Canopy Soaring Hawk",
+            scientific: "Accipiter · Forest Raptor",
+            diet: "Carnivore (Small Forest Prey)",
+            rhythm: "Diurnal · Roosts at Dusk",
+            habitat: "Upper Evergreen Canopy & Sky",
+            bio: "Rides warm thermal currents above the spruce treetops by day and retreats into dense evergreen boughs at nightfall.",
+            status: "Soaring Above Treetops",
+            x: this.x,
+            y: this.baseY,
+            rx: 22 * this.scale,
+            ry: 11 * this.scale
+          };
+        }
+
+        update(dt, time, nightFactor = 0) {
+          // Diurnal birds roost as night falls
+          const dayVisibility = 1 - smoothstep(0.35, 0.72, nightFactor);
+          this.node.setAttribute("opacity", dayVisibility.toFixed(2));
+          if (dayVisibility <= 0.02) return;
+
+          this.x += this.dir * this.speed * dt;
+          if (this.x > 1060) this.x = -60;
+          if (this.x < -60) this.x = 1060;
+
+          const y = this.baseY + Math.sin(time * 1.8 + this.baseY) * 14;
+          const flap = Math.sin(time * 9 + this.x * 0.05) * 9;
+          this.wingL.setAttribute("d", `M0 0 Q-8 ${-11 + flap} -18 ${-3 + flap * 1.3}`);
+          this.wingR.setAttribute("d", `M0 0 Q8 ${-11 + flap} 18 ${-3 + flap * 1.3}`);
+          this.node.setAttribute("transform", `translate(${this.x.toFixed(1)}, ${y.toFixed(1)}) scale(${this.scale})`);
+        }
+      }
+
+      class PerchingSongbird {
+        constructor(x, y, color) {
+          this.x = x;
+          this.y = y;
+          this.root = el("g");
+          this.bird = el("g");
+          this.bird.appendChild(el("ellipse", { cx: "0", cy: "-4", rx: "5.5", ry: "4", fill: color }));
+          this.bird.appendChild(el("circle", { cx: "4", cy: "-7", r: "3.2", fill: color }));
+          this.bird.appendChild(el("polygon", { points: "7,-7 10,-6 7,-5", fill: "#F59E0B" }));
+          this.bird.appendChild(el("polygon", { points: "-5,-4 -10,-7 -9,-2", fill: color }));
+          this.root.appendChild(this.bird);
+          bindAnimalClick(this.root, this);
+        }
+
+        getDetails() {
+          const asleep = window.forestTimeState && window.forestTimeState.nightFactor > 0.65;
+          return {
+            emoji: "🐦",
+            name: "Evergreen Songbird",
+            scientific: "Passeriformes · Woodland Bird",
+            diet: "Insectivore & Seed Eater",
+            rhythm: "Diurnal · Sleeps in Boughs",
+            habitat: "Spruce & Pine Branches",
+            bio: "Hops along evergreen boughs filling the morning forest with melodic calls before tucking into the needles at night.",
+            status: asleep ? "Roosting Asleep in Spruce" : "Perching & Singing on Branch",
+            x: this.x,
+            y: this.y,
+            rx: 16,
+            ry: 10
+          };
+        }
+
+        update(dt, time, nightFactor = 0) {
+          // Roosts quietly tucked into the evergreen boughs at night
+          const asleep = nightFactor > 0.65;
+          const hop = !asleep && Math.abs(Math.sin(time * 3.5 + this.x)) > 0.92 ? -3 : 0;
+          const look = asleep ? 1 : (Math.sin(time * 1.7 + this.y) > 0 ? 1 : -1);
+          this.bird.setAttribute("transform", `translate(0, ${hop}) scale(${look}, 1)`);
+          this.root.setAttribute("transform", `translate(${this.x}, ${this.y})`);
+        }
+      }
+
+      /**
+       * F2. NOCTURNAL OWLS & BATS (Gliding silhouettes across the moonlit sky at night)
+       */
+      class NocturnalFlyer {
+        constructor(y, speed, scale, kind) {
+          this.x = Math.random() * 1000;
+          this.baseY = y;
+          this.speed = speed;
+          this.scale = scale;
+          this.kind = kind; // 'owl' | 'bat'
+          this.dir = kind === "owl" ? 1 : -1;
+
+          this.node = el("g", { opacity: "0" });
+          if (kind === "owl") {
+            // Broad silent-winged owl silhouette
+            this.wingL = el("path", { d: "M-2 0 Q-14 -10 -26 -2 Q-14 4 -2 2 Z", fill: "#1E293B" });
+            this.wingR = el("path", { d: "M2 0 Q14 -10 26 -2 Q14 4 2 2 Z", fill: "#1E293B" });
+            this.body = el("ellipse", { cx: "0", cy: "1", rx: "4.5", ry: "7", fill: "#0F172A" });
+            this.node.appendChild(this.wingL);
+            this.node.appendChild(this.wingR);
+            this.node.appendChild(this.body);
+          } else {
+            // Scalloped forest bat silhouette
+            this.wingL = el("path", { d: "M0 0 Q-7 -8 -15 -3 Q-10 2 -6 0 Q-3 3 0 1 Z", fill: "#0F172A" });
+            this.wingR = el("path", { d: "M0 0 Q7 -8 15 -3 Q10 2 6 0 Q3 3 0 1 Z", fill: "#0F172A" });
+            this.node.appendChild(this.wingL);
+            this.node.appendChild(this.wingR);
+          }
+          aerialLayer.appendChild(this.node);
+          bindAnimalClick(this.node, this);
+        }
+
+        getDetails() {
+          const isOwl = this.kind === "owl";
+          return {
+            emoji: isOwl ? "🦉" : "🦇",
+            name: isOwl ? "Great Horned Forest Owl" : "Woodland Fruit & Insect Bat",
+            scientific: isOwl ? "Bubo virginianus" : "Chiroptera · Nocturnal Flyer",
+            diet: isOwl ? "Nocturnal Carnivore" : "Insectivore (Night Moths)",
+            rhythm: "Strictly Nocturnal",
+            habitat: "Moonlit Forest Canopy",
+            bio: isOwl
+              ? "Emerges at dusk with fringed silent-flight feathers to glide noiselessly across the moonlit evergreen canopy."
+              : "Navigates the dark forest airspace using echolocation to catch night-flying moths and insects.",
+            status: isOwl ? "Gliding Silently Under Moon" : "Echolocating in Night Sky",
+            x: this.x,
+            y: this.baseY,
+            rx: 24 * this.scale,
+            ry: 12 * this.scale
+          };
+        }
+
+        update(dt, time, nightFactor = 0) {
+          const nightVis = smoothstep(0.45, 0.8, nightFactor) * 0.85;
+          this.node.setAttribute("opacity", nightVis.toFixed(2));
+          if (nightVis <= 0.02) return;
+
+          this.x += this.dir * this.speed * dt;
+          if (this.x > 1070) this.x = -70;
+          if (this.x < -70) this.x = 1070;
+
+          if (this.kind === "owl") {
+            const y = this.baseY + Math.sin(time * 1.1 + this.baseY) * 10;
+            const glideFlap = Math.sin(time * 4.5 + this.x * 0.03) * 5;
+            this.wingL.setAttribute("d", `M-2 0 Q-14 ${-9 + glideFlap} -26 ${-2 + glideFlap * 1.2} Q-14 ${4 + glideFlap * 0.5} -2 2 Z`);
+            this.wingR.setAttribute("d", `M2 0 Q14 ${-9 + glideFlap} 26 ${-2 + glideFlap * 1.2} Q14 ${4 + glideFlap * 0.5} 2 2 Z`);
+            this.node.setAttribute("transform", `translate(${this.x.toFixed(1)}, ${y.toFixed(1)}) scale(${this.scale})`);
+          } else {
+            const y = this.baseY + Math.sin(time * 3.4 + this.baseY) * 16 + Math.cos(time * 6.2) * 5;
+            const flutter = Math.sin(time * 15 + this.x * 0.1) * 6;
+            this.wingL.setAttribute("d", `M0 0 Q-7 ${-8 + flutter} -15 ${-3 + flutter * 1.3} Q-10 2 -6 0 Q-3 3 0 1 Z`);
+            this.wingR.setAttribute("d", `M0 0 Q7 ${-8 + flutter} 15 ${-3 + flutter * 1.3} Q10 2 6 0 Q3 3 0 1 Z`);
+            this.node.setAttribute("transform", `translate(${this.x.toFixed(1)}, ${y.toFixed(1)}) scale(${this.scale})`);
+          }
+        }
+      }
+
+      /**
+       * G. FOREST RABBITS, BUTTERFLIES & BIOLUMINESCENT FIREFLIES
+       */
+      class ForestRabbit {
+        constructor(x, y, bounds) {
+          this.x = x;
+          this.y = y;
+          this.bounds = bounds;
+          this.facing = 1;
+          this.timer = 2 + Math.random() * 3;
+          this.hopping = false;
+          this.targetX = x;
+          this.targetY = y;
+
+          this.root = el("g");
+          this.flip = el("g");
+          this.root.appendChild(this.flip);
+
+          this.flip.appendChild(el("ellipse", { cx: "0", cy: "1", rx: "8", ry: "3", fill: "#14291A", opacity: "0.35" }));
+          this.body = el("g");
+          this.body.appendChild(el("ellipse", { cx: "0", cy: "-6", rx: "7", ry: "5.5", fill: "#B08968" }));
+          this.body.appendChild(el("circle", { cx: "-7", cy: "-6", r: "2.6", fill: "#FFF8F0" }));
+          this.body.appendChild(el("circle", { cx: "6", cy: "-9", r: "4.2", fill: "#B08968" }));
+          this.body.appendChild(el("ellipse", { cx: "4", cy: "-16", rx: "1.6", ry: "5", transform: "rotate(-15 4 -16)", fill: "#9C6644" }));
+          this.body.appendChild(el("ellipse", { cx: "6", cy: "-16", rx: "1.6", ry: "5", transform: "rotate(5 6 -16)", fill: "#B08968" }));
+          this.body.appendChild(el("circle", { cx: "8", cy: "-9.5", r: "1", fill: "#000" }));
+          this.flip.appendChild(this.body);
+          bindAnimalClick(this.root, this);
+        }
+
+        getDetails() {
+          return {
+            emoji: "🐇",
+            name: "Cottontail Forest Rabbit",
+            scientific: "Sylvilagus · Woodland Hare",
+            diet: "Herbivore (Herbs & Clover)",
+            rhythm: "Crepuscular & Active",
+            habitat: "Foreground Meadow & Ferns",
+            bio: "Bounds across the mossy clearing between fern clusters, using long ears to listen for rustling leaves.",
+            status: this.hopping ? "Hopping Across Clearing" : "Nibbling Clover & Resting",
+            x: this.x,
+            y: this.y,
+            rx: 16,
+            ry: 8
+          };
+        }
+
+        update(dt, time) {
+          this.timer -= dt;
+          if (!this.hopping) {
+            this.body.setAttribute("transform", "translate(0, 0)");
+            if (this.timer <= 0) {
+              this.hopping = true;
+              this.targetX = this.bounds.minX + Math.random() * (this.bounds.maxX - this.bounds.minX);
+              this.targetY = this.bounds.minY + Math.random() * (this.bounds.maxY - this.bounds.minY);
+              this.timer = 1.5 + Math.random() * 2.5;
+            }
+          } else {
+            const dx = this.targetX - this.x;
+            const dy = this.targetY - this.y;
+            const dist = Math.hypot(dx, dy);
+            if (dist < 4 || this.timer <= 0) {
+              this.hopping = false;
+              this.timer = 2.5 + Math.random() * 4;
+            } else {
+              this.x += (dx / dist) * 38 * dt;
+              this.y += (dy / dist) * 38 * dt;
+              this.facing = dx >= 0 ? 1 : -1;
+              const hopArc = Math.abs(Math.sin(time * 12)) * 7;
+              this.body.setAttribute("transform", `translate(0, ${-hopArc.toFixed(1)})`);
+            }
+          }
+          this.root.setAttribute("transform", `translate(${this.x.toFixed(1)}, ${this.y.toFixed(1)})`);
+          this.flip.setAttribute("transform", `scale(${this.facing}, 1)`);
+        }
+      }
+
+      class Butterfly {
+        constructor(x, y, color) {
+          this.cx = x;
+          this.cy = y;
+          this.phase = Math.random() * Math.PI * 2;
+          this.node = el("g");
+          this.wing1 = el("ellipse", { cx: "-3", cy: "-2", rx: "4.5", ry: "3", fill: color, opacity: "0.9" });
+          this.wing2 = el("ellipse", { cx: "3", cy: "-2", rx: "4.5", ry: "3", fill: color, opacity: "0.9" });
+          this.node.appendChild(this.wing1);
+          this.node.appendChild(this.wing2);
+          aerialLayer.appendChild(this.node);
+          bindAnimalClick(this.node, this);
+        }
+
+        getDetails() {
+          return {
+            emoji: "🦋",
+            name: "Meadow Swallowtail Butterfly",
+            scientific: "Lepidoptera · Pollinator",
+            diet: "Nectarivore (Wildflowers)",
+            rhythm: "Diurnal · Sun-Loving",
+            habitat: "Sunlit Wildflower Patches",
+            bio: "Flutters between blooming forest wildflowers by day, pollinating clover and meadow blossoms.",
+            status: "Fluttering Over Wildflowers",
+            x: this.cx,
+            y: this.cy,
+            rx: 15,
+            ry: 9
+          };
+        }
+
+        update(dt, time, nightFactor = 0) {
+          const dayVis = 1 - smoothstep(0.35, 0.7, nightFactor);
+          this.node.setAttribute("opacity", dayVis.toFixed(2));
+          if (dayVis <= 0.02) return;
+
+          const t = time * 1.4 + this.phase;
+          const x = this.cx + Math.sin(t) * 36 + Math.cos(t * 2.1) * 14;
+          const y = this.cy + Math.cos(t * 1.3) * 20;
+          const flutter = Math.abs(Math.sin(time * 18 + this.phase));
+          this.wing1.setAttribute("rx", (1.2 + flutter * 3.8).toFixed(1));
+          this.wing2.setAttribute("rx", (1.2 + flutter * 3.8).toFixed(1));
+          this.node.setAttribute("transform", `translate(${x.toFixed(1)}, ${y.toFixed(1)})`);
+        }
+      }
+
+      class Firefly {
+        constructor(cx, cy, radiusX, radiusY) {
+          this.cx = cx;
+          this.cy = cy;
+          this.rx = radiusX;
+          this.ry = radiusY;
+          this.phase = Math.random() * Math.PI * 2;
+          this.speed = 0.55 + Math.random() * 0.65;
+          this.pulseFreq = 1.8 + Math.random() * 2.2;
+
+          this.node = el("g", { opacity: "0" });
+          this.halo = el("circle", { cx: "0", cy: "0", r: "11", fill: "url(#fireflyGlow)" });
+          this.core = el("circle", { cx: "0", cy: "0", r: "1.9", fill: "#FEF9C3" });
+          this.node.appendChild(this.halo);
+          this.node.appendChild(this.core);
+          nocturnalGlowLayer.appendChild(this.node);
+          bindAnimalClick(this.node, this);
+        }
+
+        getDetails() {
+          return {
+            emoji: "✨",
+            name: "Bioluminescent Firefly",
+            scientific: "Lampyridae · Glow Beetle",
+            diet: "Pollen & Nectar",
+            rhythm: "Dusk & Nocturnal",
+            habitat: "Damp Ferns & Stream Banks",
+            bio: "Produces cold golden-green bioluminescence using luciferin in its abdomen to signal across the dark forest floor.",
+            status: "Pulsing Bioluminescent Glow",
+            x: this.cx,
+            y: this.cy,
+            rx: 14,
+            ry: 9
+          };
+        }
+
+        update(dt, time, nightFactor = 0) {
+          const duskVis = smoothstep(0.32, 0.68, nightFactor);
+          if (duskVis <= 0.01) {
+            this.node.setAttribute("opacity", "0");
+            return;
+          }
+
+          const t = time * this.speed + this.phase;
+          const x = this.cx + Math.sin(t) * this.rx + Math.cos(t * 1.7) * 12;
+          const y = this.cy + Math.cos(t * 1.25) * this.ry + Math.sin(t * 2.1) * 8;
+          const pulse = 0.25 + 0.75 * Math.pow(0.5 + 0.5 * Math.sin(time * this.pulseFreq + this.phase * 3), 2);
+          const scale = 0.75 + pulse * 0.45;
+
+          this.node.setAttribute("opacity", (duskVis * pulse).toFixed(2));
+          this.node.setAttribute("transform", `translate(${x.toFixed(1)}, ${y.toFixed(1)}) scale(${scale.toFixed(2)})`);
+        }
+      }
+
+      // ---------------------------------------------------------
+      // 4. INSTANTIATE ECOSYSTEM POPULATION
+      // ---------------------------------------------------------
+      const deerHerd = [
+        new Deer(245, 445, 1.05, { minX: 165, maxX: 430, minY: 380, maxY: 515 }),
+        new Deer(340, 480, 0.98, { minX: 190, maxX: 455, minY: 400, maxY: 530 }),
+        new Deer(290, 415, 0.78, { minX: 185, maxX: 420, minY: 385, maxY: 495 }) // Young fawn
+      ];
+
+      const cowHerd = [
+        new Cow(615, 445, 1.05, { minX: 545, maxX: 745, minY: 390, maxY: 515 }, "#3D2B1F"),
+        new Cow(695, 475, 1.0, { minX: 560, maxX: 755, minY: 410, maxY: 525 }, "#1F2937")
+      ];
+
+      const tiger = new Tiger(835, 502, 1.12);
+
+      const crocodile = new Crocodile(460, 685, 1.05);
+
+      const fishSchool = [
+        new RiverFish(160, 635, 1.0, "#1E3A5F", 34),
+        new RiverFish(295, 675, 0.85, "#E07A5F", 42),
+        new RiverFish(480, 715, 1.1, "#1D3557", 29),
+        new RiverFish(650, 650, 0.9, "#F4A261", 38),
+        new RiverFish(790, 685, 0.8, "#264653", 45),
+        new RiverFish(390, 645, 0.75, "#E76F51", 40)
+      ];
+
+      const flyingBirds = [
+        new FlyingBird(135, 48, 0.95, "#1E293B"),
+        new FlyingBird(165, 42, 0.8, "#334155"),
+        new FlyingBird(215, 55, 0.85, "#1E293B"),
+        new FlyingBird(265, 38, 0.75, "#475569")
+      ];
+
+      const perchingBirds = [
+        new PerchingSongbird(88, 452, "#EF4444"),
+        new PerchingSongbird(495, 322, "#38BDF8"),
+        new PerchingSongbird(915, 412, "#FACC15")
+      ];
+
+      const rabbits = [
+        new ForestRabbit(215, 875, { minX: 135, maxX: 375, minY: 825, maxY: 940 }),
+        new ForestRabbit(310, 910, { minX: 165, maxX: 410, minY: 840, maxY: 950 })
+      ];
+
+      const butterflies = [
+        new Butterfly(235, 425, "#FDE047"),
+        new Butterfly(365, 455, "#F472B6"),
+        new Butterfly(625, 440, "#38BDF8"),
+        new Butterfly(245, 855, "#FB923C"),
+        new Butterfly(585, 865, "#FDE047")
+      ];
+
+      const nocturnalFlyers = [
+        new NocturnalFlyer(125, 36, 1.0, "owl"),
+        new NocturnalFlyer(185, 44, 0.85, "owl"),
+        new NocturnalFlyer(155, 62, 0.9, "bat"),
+        new NocturnalFlyer(215, 68, 0.8, "bat"),
+        new NocturnalFlyer(110, 58, 0.75, "bat")
+      ];
+
+      // Bioluminescent fireflies around ferns, wildflowers, and stream banks
+      const fireflies = [
+        new Firefly(145, 495, 38, 22),
+        new Firefly(225, 535, 45, 20),
+        new Firefly(335, 555, 42, 18),
+        new Firefly(465, 540, 48, 22),
+        new Firefly(585, 565, 40, 18),
+        new Firefly(715, 535, 45, 22),
+        new Firefly(845, 520, 35, 20),
+        new Firefly(165, 795, 44, 24),
+        new Firefly(290, 825, 50, 22),
+        new Firefly(435, 815, 45, 20),
+        new Firefly(565, 835, 48, 24),
+        new Firefly(725, 805, 42, 20),
+        new Firefly(855, 845, 38, 22),
+        new Firefly(390, 895, 52, 24),
+        new Firefly(655, 900, 46, 22)
+      ];
+
+      // ---------------------------------------------------------
+      // 5. 24-HOUR DAY-NIGHT CYCLE STATE & HUD CONTROLS
+      // ---------------------------------------------------------
+      // Expose shared time state for the audio engine's Auto Day/Night crossfader
+      window.forestTimeState = {
+        hour: 8.5,          // Starts at 08:30 AM Morning (~90s per full 24h cycle at 1x)
+        nightFactor: 0.0,   // 0 = full bright day, 1 = deep starry night
+        playing: true,
+        speed: 1
+      };
+
+      const dnToggleBtn = document.getElementById("dn-toggle-btn");
+      const dnIconPause = document.getElementById("dn-icon-pause");
+      const dnIconPlay = document.getElementById("dn-icon-play");
+      const dnPhaseBadge = document.getElementById("dn-phase-badge");
+      const dnClockReadout = document.getElementById("dn-clock-readout");
+      const dnTimeSlider = document.getElementById("dn-time-slider");
+      const dnPresetBtns = document.querySelectorAll(".dn-preset-btn");
+      const dnSpeedBtns = document.querySelectorAll(".dn-speed-btn");
+
+      let isScrubbingTime = false;
+
+      function format12HourClock(hourFloat) {
+        const totalMinutes = Math.floor(((hourFloat % 24) + 24) % 24 * 60);
+        const h24 = Math.floor(totalMinutes / 60);
+        const mins = totalMinutes % 60;
+        const period = h24 >= 12 ? "PM" : "AM";
+        const h12 = h24 % 12 === 0 ? 12 : h24 % 12;
+        return `${String(h12).padStart(2, "0")}:${String(mins).padStart(2, "0")} ${period}`;
+      }
+
+      function getPhaseLabel(h) {
+        if (h >= 5.0 && h < 7.0) return "Dawn";
+        if (h >= 7.0 && h < 16.5) return "Morning / Day";
+        if (h >= 16.5 && h < 19.0) return "Golden Sunset";
+        if (h >= 19.0 && h < 20.5) return "Dusk";
+        return "Starry Night";
+      }
+
+      function computeNightFactor(h) {
+        // Smoothly rises from 0 to 1 across Sunset/Dusk (17:30 -> 20:30)
+        // and falls from 1 to 0 across Dawn (04:45 -> 07:15)
+        if (h >= 20.5 || h < 4.75) return 1.0;
+        if (h >= 7.25 && h < 17.5) return 0.0;
+        if (h >= 17.5 && h < 20.5) return smoothstep(17.5, 20.5, h);
+        return 1.0 - smoothstep(4.75, 7.25, h);
+      }
+
+      function syncDayNightHUD() {
+        const h = window.forestTimeState.hour;
+        dnIconPause.classList.toggle("hidden", !window.forestTimeState.playing);
+        dnIconPlay.classList.toggle("hidden", window.forestTimeState.playing);
+        dnPhaseBadge.textContent = getPhaseLabel(h);
+        dnClockReadout.textContent = format12HourClock(h);
+        if (!isScrubbingTime) {
+          dnTimeSlider.value = h.toFixed(2);
+        }
+
+        dnSpeedBtns.forEach((btn) => {
+          const active = Number(btn.dataset.speed) === window.forestTimeState.speed;
+          btn.classList.toggle("bg-emerald-500/35", active);
+          btn.classList.toggle("text-emerald-100", active);
+          btn.classList.toggle("font-semibold", active);
+          btn.classList.toggle("text-emerald-200/70", !active);
+        });
+      }
+
+      dnToggleBtn.addEventListener("click", () => {
+        window.forestTimeState.playing = !window.forestTimeState.playing;
+        syncDayNightHUD();
+      });
+
+      dnTimeSlider.addEventListener("pointerdown", () => { isScrubbingTime = true; });
+      window.addEventListener("pointerup", () => { isScrubbingTime = false; });
+      dnTimeSlider.addEventListener("input", (e) => {
+        window.forestTimeState.hour = parseFloat(e.target.value) % 24;
+        syncDayNightHUD();
+      });
+
+      dnPresetBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          window.forestTimeState.hour = parseFloat(btn.dataset.hour);
+          syncDayNightHUD();
+        });
+      });
+
+      dnSpeedBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          window.forestTimeState.speed = Number(btn.dataset.speed);
+          syncDayNightHUD();
+        });
+      });
+
+      function applyAtmosphereToDOM(hour, nightFactor) {
+        const atm = sampleAtmosphere(hour);
+
+        // Sky & Water gradients
+        atm.sky.forEach((col, i) => skyStops[i].setAttribute("stop-color", col));
+        atm.water.forEach((col, i) => waterStops[i].setAttribute("stop-color", col));
+        dayNightTint.setAttribute("fill", atm.tint);
+        cloudLayer1.setAttribute("fill", atm.cloud);
+        cloudLayer2.setAttribute("fill", atm.cloud);
+
+        // Sun Arc (05:15 -> 19:15 across sky)
+        const sunSpan = (hour - 5.25) / 14.0; // 0 at sunrise, 0.5 at noon, 1 at sunset
+        const sunAngle = sunSpan * Math.PI;
+        const sunX = 110 + sunSpan * 780;
+        const sunY = 305 - Math.sin(sunAngle) * 215;
+        const sunVis = sunSpan > -0.06 && sunSpan < 1.06 ? Math.sin(clamp01(sunSpan) * Math.PI) : 0;
+        sunCelestial.setAttribute("transform", `translate(${sunX.toFixed(1)}, ${sunY.toFixed(1)})`);
+        sunCelestial.setAttribute("opacity", clamp01(sunVis * 1.4).toFixed(2));
+        sunDisc.setAttribute("fill", atm.sunDisc);
+        sunGlowStop0.setAttribute("stop-color", atm.sunDisc);
+        sunGlowStop1.setAttribute("stop-color", atm.sunGlow);
+
+        // Moon Arc (18:30 -> 06:30 across sky)
+        const moonHour = hour >= 18.5 ? hour - 18.5 : hour + 5.5;
+        const moonSpan = moonHour / 12.0;
+        const moonAngle = moonSpan * Math.PI;
+        const moonX = 130 + moonSpan * 740;
+        const moonY = 295 - Math.sin(moonAngle) * 205;
+        const moonVis = moonSpan > 0 && moonSpan < 1 ? Math.sin(moonSpan * Math.PI) * nightFactor : 0;
+        moonCelestial.setAttribute("transform", `translate(${moonX.toFixed(1)}, ${moonY.toFixed(1)})`);
+        moonCelestial.setAttribute("opacity", clamp01(moonVis * 1.35).toFixed(2));
+
+        // Stars & Water Star/Moon Reflections
+        const starVis = smoothstep(0.42, 0.85, nightFactor);
+        starfieldLayer.setAttribute("opacity", starVis.toFixed(2));
+        waterStarReflections.setAttribute("opacity", (starVis * 0.85).toFixed(2));
+        moonWaterGlint.setAttribute("cx", moonX.toFixed(1));
+
+        // Canopy God-Rays: Warm golden sunbeams by day -> cool silvery-blue moonbeams at night
+        const dayBeam = 1 - smoothstep(0.3, 0.65, nightFactor);
+        const nightBeam = smoothstep(0.55, 0.9, nightFactor);
+        const beamAlpha = Math.max(dayBeam * 0.45, nightBeam * 0.28);
+        const beamColor = lerpColor("#FFFBEB", "#BAE6FD", nightFactor);
+        const beamEndColor = lerpColor("#FEF3C7", "#60A5FA", nightFactor);
+        shaftStop0.setAttribute("stop-color", beamColor);
+        shaftStop0.setAttribute("stop-opacity", beamAlpha.toFixed(2));
+        shaftStop1.setAttribute("stop-color", beamEndColor);
+
+        // Dynamic Directional Shadows (shift horizontally with sun angle and soften into cool indigo at night)
+        const sunOffset = clamp01(sunSpan) - 0.5; // -0.5 morning (shadow right), +0.5 evening (shadow left)
+        const shadowShiftX = -sunOffset * 28 * (1 - nightFactor);
+        const shadowScaleX = 1 + Math.abs(sunOffset) * 0.55 * (1 - nightFactor);
+        const shadowColor = lerpColor("#122618", "#0F172A", nightFactor);
+        const shadowOpacity = (0.45 - nightFactor * 0.22).toFixed(2);
+
+        for (let i = 0; i < staticProps.length; i++) {
+          const sh = staticProps[i].shadow;
+          if (sh) {
+            sh.setAttribute("cx", shadowShiftX.toFixed(1));
+            sh.setAttribute("rx", (28 * shadowScaleX).toFixed(1));
+            sh.setAttribute("fill", shadowColor);
+            sh.setAttribute("opacity", shadowOpacity);
+          }
+        }
+      }
+
+      // ---------------------------------------------------------
+      // 6. 60FPS ANIMATION LOOP WITH DYNAMIC Y-SORTING
+      // ---------------------------------------------------------
+      let lastTime = performance.now();
+      // 24 hours / 90 seconds = 0.2666667 game-hours per real second at 1x speed
+      const BASE_HOURS_PER_SEC = 24 / 90;
+
+      function animate(now) {
+        const dt = Math.min(0.05, (now - lastTime) / 1000);
+        lastTime = now;
+        const time = now / 1000;
+
+        // Advance 24-hour clock smoothly
+        if (window.forestTimeState.playing && !isScrubbingTime) {
+          window.forestTimeState.hour =
+            (window.forestTimeState.hour + dt * BASE_HOURS_PER_SEC * window.forestTimeState.speed) % 24;
+        }
+        const nightFactor = computeNightFactor(window.forestTimeState.hour);
+        window.forestTimeState.nightFactor = nightFactor;
+
+        applyAtmosphereToDOM(window.forestTimeState.hour, nightFactor);
+        syncDayNightHUD();
+
+        // Update all animals with time-of-day awareness
+        deerHerd.forEach((d) => d.update(dt, time, nightFactor));
+        cowHerd.forEach((c) => c.update(dt, time, nightFactor));
+
+        // Find nearest deer for the tiger to watch
+        let nearestDeer = deerHerd[0];
+        let minDist = Infinity;
+        deerHerd.forEach((d) => {
+          const dist = Math.hypot(d.x - tiger.x, d.y - tiger.y);
+          if (dist < minDist) {
+            minDist = dist;
+            nearestDeer = d;
+          }
+        });
+        tiger.update(dt, time, nearestDeer, nightFactor);
+
+        crocodile.update(dt, time, nightFactor);
+        fishSchool.forEach((f) => f.update(dt, time));
+        flyingBirds.forEach((b) => b.update(dt, time, nightFactor));
+        perchingBirds.forEach((pb) => pb.update(dt, time, nightFactor));
+        nocturnalFlyers.forEach((nf) => nf.update(dt, time, nightFactor));
+        rabbits.forEach((r) => r.update(dt, time));
+        butterflies.forEach((bf) => bf.update(dt, time, nightFactor));
+        fireflies.forEach((ff) => ff.update(dt, time, nightFactor));
+
+        // Update Live Inspector Card & Selection Reticle if an animal is selected
+        if (selectedAnimal) {
+          const info = selectedAnimal.getDetails();
+          inspectorStatusText.textContent = info.status;
+          inspectorCoords.textContent = `X: ${Math.round(info.x)} · Y: ${Math.round(info.y)}`;
+
+          // Hide reticle if the selected animal (e.g., diurnal bird or night owl) is inactive for the time of day
+          const nodeOpacity = selectedAnimal.node
+            ? parseFloat(selectedAnimal.node.getAttribute("opacity") || "1")
+            : 1;
+          if (nodeOpacity <= 0.05) {
+            selectionReticle.setAttribute("opacity", "0");
+          } else {
+            selectionReticle.setAttribute("opacity", "0.95");
+            selectionReticle.setAttribute("transform", `translate(${info.x.toFixed(1)}, ${info.y.toFixed(1)})`);
+            const ellipse = selectionReticle.firstElementChild;
+            ellipse.setAttribute("rx", (info.rx || 26).toFixed(1));
+            ellipse.setAttribute("ry", (info.ry || 11).toFixed(1));
+          }
+        }
+
+        // Combine static forest props & terrestrial animals for true depth Y-sorting
+        const renderList = [
+          ...staticProps,
+          ...deerHerd.map((d) => ({ y: d.y, node: d.root })),
+          ...cowHerd.map((c) => ({ y: c.y, node: c.root })),
+          { y: tiger.y, node: tiger.root },
+          ...perchingBirds.map((pb) => ({ y: pb.y, node: pb.root })),
+          ...rabbits.map((r) => ({ y: r.y, node: r.root }))
+        ];
+
+        renderList.sort((a, b) => a.y - b.y);
+
+        // Efficiently reorder DOM nodes in ySortedWorld
+        for (let i = 0; i < renderList.length; i++) {
+          ySortedWorld.appendChild(renderList[i].node);
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      requestAnimationFrame(animate);
+    })();
+
+    /**
+     * Real Field-Recorded Forest Soundscape Engine
+     * Uses authentic outdoor field recordings from Wikimedia Commons (0% AI)
+     * with a dual-deck crossfading loop engine to eliminate hard loop seams.
+     */
+    (function initForestAudioEngine() {
+      // Verified fallback direct URLs + MP3 transcodes for broad browser compatibility
+      const TRACKS = {
+        creek: {
+          title: "File:Forest_lawn_creek.ogg",
+          urls: [
+            "https://upload.wikimedia.org/wikipedia/commons/e/e1/Forest_lawn_creek.ogg",
+            "https://upload.wikimedia.org/wikipedia/commons/transcoded/e/e1/Forest_lawn_creek.ogg/Forest_lawn_creek.ogg.mp3"
+          ]
+        },
+        rainforest: {
+          title: "File:Short_nature_soundscape,_Lamington_National_Park,_Australia.ogg",
+          urls: [
+            "https://upload.wikimedia.org/wikipedia/commons/5/59/Short_nature_soundscape%2C_Lamington_National_Park%2C_Australia.ogg",
+            "https://upload.wikimedia.org/wikipedia/commons/transcoded/5/59/Short_nature_soundscape%2C_Lamington_National_Park%2C_Australia.ogg/Short_nature_soundscape%2C_Lamington_National_Park%2C_Australia.ogg.mp3"
+          ]
+        },
+        night: {
+          title: "File:Crickets_in_night.ogg",
+          urls: [
+            "https://upload.wikimedia.org/wikipedia/commons/7/75/Crickets_in_night.ogg",
+            "https://upload.wikimedia.org/wikipedia/commons/transcoded/7/75/Crickets_in_night.ogg/Crickets_in_night.ogg.mp3"
+          ]
+        },
+        custom: {
+          title: "Custom Audio",
+          urls: []
+        }
+      };
+
+      // Dynamically resolve canonical direct CDN URLs via Wikimedia Commons MediaWiki API
+      (async function resolveWikimediaUrls() {
+        try {
+          const apiEndpoint =
+            "https://commons.wikimedia.org/w/api.php?action=query&titles=" +
+            encodeURIComponent(`${TRACKS.creek.title}|${TRACKS.rainforest.title}|${TRACKS.night.title}`) +
+            "&prop=imageinfo&iiprop=url&format=json&origin=*";
+          const res = await fetch(apiEndpoint);
+          if (!res.ok) return;
+          const data = await res.json();
+          const pages = data?.query?.pages;
+          if (!pages) return;
+          Object.values(pages).forEach((page) => {
+            const directUrl = page?.imageinfo?.[0]?.url;
+            if (!directUrl) return;
+            if (page.title && page.title.includes("Forest lawn creek")) {
+              if (!TRACKS.creek.urls.includes(directUrl)) {
+                TRACKS.creek.urls.unshift(directUrl);
+              }
+            } else if (page.title && page.title.includes("Lamington")) {
+              if (!TRACKS.rainforest.urls.includes(directUrl)) {
+                TRACKS.rainforest.urls.unshift(directUrl);
+              }
+            } else if (page.title && page.title.includes("Crickets in night")) {
+              if (!TRACKS.night.urls.includes(directUrl)) {
+                TRACKS.night.urls.unshift(directUrl);
+              }
+            }
+          });
+        } catch (_) {
+          // Silently retain pre-verified Wikimedia upload URLs if offline or blocked
+        }
+      })();
+
+      /**
+       * Dual-Deck Crossfading Looper
+       * Plays a track across two alternating HTMLAudioElements (deckA & deckB),
+       * crossfading smoothly over 4 seconds before track end so there are zero choppy cuts.
+       */
+      class CrossfadeLooper {
+        constructor(trackKey, crossfadeSec = 4.0) {
+          this.trackKey = trackKey;
+          this.crossfadeSec = crossfadeSec;
+          this.decks = [this.createDeck(), this.createDeck()];
+          this.activeIdx = 0;
+          this.isCrossfading = false;
+          this.crossfadeStart = 0;
+          this.targetWeight = 0; // 0..1 layer mix weight
+          this.currentWeight = 0;
+          this.playing = false;
+          this.urlIndex = 0;
+        }
+
+        createDeck() {
+          const audio = new Audio();
+          audio.preload = "auto";
+          audio.crossOrigin = "anonymous";
+          audio.volume = 0;
+          audio.addEventListener("error", () => {
+            // Try fallback MP3 transcode if OGG fails on Safari/iOS
+            const urls = TRACKS[this.trackKey]?.urls || [];
+            if (this.urlIndex + 1 < urls.length) {
+              this.urlIndex += 1;
+              audio.src = urls[this.urlIndex];
+              if (this.playing) audio.play().catch(() => {});
+            }
+          });
+          return audio;
+        }
+
+        loadTrack(trackKey) {
+          this.trackKey = trackKey;
+          this.urlIndex = 0;
+          const urls = TRACKS[this.trackKey]?.urls || [];
+          const src = urls[0] || "";
+          this.decks.forEach((d) => {
+            d.pause();
+            d.currentTime = 0;
+            d.src = src;
+            d.volume = 0;
+          });
+          this.activeIdx = 0;
+          this.isCrossfading = false;
+        }
+
+        async start() {
+          const urls = TRACKS[this.trackKey]?.urls || [];
+          if (!urls.length) return;
+          const active = this.decks[this.activeIdx];
+          if (!active.src) {
+            active.src = urls[this.urlIndex];
+          }
+          this.playing = true;
+          try {
+            await active.play();
+          } catch (_) {
+            // Fallback to next format URL if initial format cannot play
+            if (this.urlIndex + 1 < urls.length) {
+              this.urlIndex += 1;
+              active.src = urls[this.urlIndex];
+              await active.play().catch(() => {});
+            }
+          }
+        }
+
+        stop() {
+          this.playing = false;
+          this.isCrossfading = false;
+          this.decks.forEach((d) => {
+            d.pause();
+            d.volume = 0;
+          });
+          this.currentWeight = 0;
+        }
+
+        tick(dt, masterGain, nowSec) {
+          // Smoothly ramp layer weight (1.5s fade-in, 0.8s fade-out)
+          const rampRate = this.targetWeight > this.currentWeight ? 1 / 1.5 : 1 / 0.8;
+          if (Math.abs(this.targetWeight - this.currentWeight) > 0.001) {
+            const step = Math.sign(this.targetWeight - this.currentWeight) * rampRate * dt;
+            if (Math.abs(step) >= Math.abs(this.targetWeight - this.currentWeight)) {
+              this.currentWeight = this.targetWeight;
+            } else {
+              this.currentWeight += step;
+            }
+          } else {
+            this.currentWeight = this.targetWeight;
+          }
+
+          // Pause underlying decks once faded completely down to 0
+          if (this.currentWeight <= 0.001 && this.targetWeight === 0) {
+            if (this.playing) this.stop();
+            return;
+          }
+
+          if (!this.playing && this.targetWeight > 0) {
+            this.start();
+          }
+
+          const active = this.decks[this.activeIdx];
+          const standbyIdx = 1 - this.activeIdx;
+          const standby = this.decks[standbyIdx];
+
+          // Trigger 4-second overlap crossfade before the active deck reaches its end
+          if (
+            !this.isCrossfading &&
+            active.duration &&
+            isFinite(active.duration) &&
+            active.duration > this.crossfadeSec * 2 &&
+            active.currentTime >= active.duration - this.crossfadeSec
+          ) {
+            this.isCrossfading = true;
+            this.crossfadeStart = nowSec;
+            standby.currentTime = 0;
+            standby.volume = 0;
+            standby.play().catch(() => {});
+          }
+
+          const effectiveGain = Math.max(0, Math.min(1, this.currentWeight * masterGain));
+
+          if (this.isCrossfading) {
+            const progress = Math.min(1, (nowSec - this.crossfadeStart) / this.crossfadeSec);
+            // Equal-power cosine crossfade curve for velvety smooth transition
+            const fadeOut = Math.cos(progress * Math.PI * 0.5);
+            const fadeIn = Math.sin(progress * Math.PI * 0.5);
+            active.volume = effectiveGain * fadeOut;
+            standby.volume = effectiveGain * fadeIn;
+
+            if (progress >= 1) {
+              active.pause();
+              active.currentTime = 0;
+              active.volume = 0;
+              this.activeIdx = standbyIdx;
+              this.isCrossfading = false;
+            }
+          } else {
+            active.volume = effectiveGain;
+          }
+        }
+      }
+      // Instantiate dual-deck loopers for day & night real field recordings
+      const creekLooper = new CrossfadeLooper("creek", 4.0);
+      const rainforestLooper = new CrossfadeLooper("rainforest", 4.0);
+      const nightLooper = new CrossfadeLooper("night", 4.0);
+
+      // State & DOM References
+      let isPlaying = false;
+      let isMuted = false;
+      let userVolume = 0.72;
+      let currentMasterGain = 0;
+      let activeMode = "auto"; // 'auto' | 'creek' | 'rainforest' | 'blended' | 'custom'
+      let hasStartedOnce = false;
+
+      const toggleBtn = document.getElementById("audio-toggle-btn");
+      const iconPlay = document.getElementById("icon-play");
+      const iconPause = document.getElementById("icon-pause");
+      const playBtnLabel = document.getElementById("play-btn-label");
+      const modeBtns = document.querySelectorAll(".mode-btn");
+      const mobileModeBtn = document.getElementById("mobile-mode-btn");
+      const muteBtn = document.getElementById("mute-btn");
+      const iconVolOn = document.getElementById("icon-vol-on");
+      const iconVolMuted = document.getElementById("icon-vol-muted");
+      const volumeSlider = document.getElementById("volume-slider");
+      const infoBtn = document.getElementById("audio-info-btn");
+      const infoPopover = document.getElementById("audio-info-popover");
+      const customAudioInput = document.getElementById("custom-audio-input");
+      const statusText = document.getElementById("audio-status-text");
+
+      function updateModeWeights() {
+        if (!isPlaying) {
+          creekLooper.targetWeight = 0;
+          rainforestLooper.targetWeight = 0;
+          nightLooper.targetWeight = 0;
+          return;
+        }
+        const nf = window.forestTimeState ? window.forestTimeState.nightFactor : 0;
+
+        if (activeMode === "auto") {
+          // Smoothly crossfade daytime creek & birds into nocturnal crickets & night forest at dusk/night
+          creekLooper.targetWeight = Math.max(0.18, 1.0 - nf * 0.82); // Gentle night stream murmur remains
+          rainforestLooper.targetWeight = Math.max(0, (1.0 - nf) * 0.25);
+          nightLooper.targetWeight = nf * 0.95;
+        } else if (activeMode === "creek" || activeMode === "custom") {
+          creekLooper.targetWeight = 1.0;
+          rainforestLooper.targetWeight = 0;
+          nightLooper.targetWeight = 0;
+        } else if (activeMode === "rainforest") {
+          creekLooper.targetWeight = 0;
+          rainforestLooper.targetWeight = 1.0;
+          nightLooper.targetWeight = 0;
+        } else if (activeMode === "blended") {
+          // Layered harmony: gentle creek & birds + rich Lamington rainforest bed + subtle night layer at night
+          creekLooper.targetWeight = 0.65;
+          rainforestLooper.targetWeight = 0.58;
+          nightLooper.targetWeight = nf * 0.45;
+        }
+      }
+
+      function syncUI() {
+        iconPlay.classList.toggle("hidden", isPlaying);
+        iconPause.classList.toggle("hidden", !isPlaying);
+
+        if (!hasStartedOnce && !isPlaying) {
+          playBtnLabel.textContent = "Click for Forest Sound";
+        } else {
+          playBtnLabel.textContent = isPlaying ? "Sound On" : "Paused";
+        }
+
+        iconVolOn.classList.toggle("hidden", isMuted || userVolume === 0);
+        iconVolMuted.classList.toggle("hidden", !isMuted && userVolume > 0);
+
+        modeBtns.forEach((btn) => {
+          const selected = btn.dataset.mode === activeMode;
+          btn.classList.toggle("bg-emerald-500/35", selected);
+          btn.classList.toggle("text-emerald-100", selected);
+          btn.classList.toggle("font-medium", selected);
+          btn.classList.toggle("text-emerald-200/70", !selected);
+        });
+
+        const shortLabels = {
+          auto: "Auto",
+          creek: "Creek",
+          rainforest: "Rainforest",
+          blended: "Blended",
+          custom: "Custom"
+        };
+        mobileModeBtn.textContent = shortLabels[activeMode] || "Auto";
+        statusText.textContent = isPlaying ? "Playing smoothly" : "Paused";
+      }
+
+      toggleBtn.addEventListener("click", () => {
+        isPlaying = !isPlaying;
+        if (isPlaying) hasStartedOnce = true;
+        updateModeWeights();
+        syncUI();
+      });
+
+      modeBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          if (activeMode === "custom") {
+            creekLooper.loadTrack("creek");
+          }
+          activeMode = btn.dataset.mode;
+          if (!isPlaying) {
+            isPlaying = true;
+            hasStartedOnce = true;
+          }
+          updateModeWeights();
+          syncUI();
+        });
+      });
+
+      mobileModeBtn.addEventListener("click", () => {
+        const order = ["auto", "creek", "rainforest", "blended"];
+        const next = order[(order.indexOf(activeMode) + 1) % order.length];
+        if (activeMode === "custom") {
+          creekLooper.loadTrack("creek");
+        }
+        activeMode = next;
+        if (!isPlaying) {
+          isPlaying = true;
+          hasStartedOnce = true;
+        }
+        updateModeWeights();
+        syncUI();
+      });
+
+      muteBtn.addEventListener("click", () => {
+        isMuted = !isMuted;
+        syncUI();
+      });
+
+      volumeSlider.addEventListener("input", (e) => {
+        userVolume = parseFloat(e.target.value);
+        if (userVolume > 0 && isMuted) {
+          isMuted = false;
+        }
+        syncUI();
+      });
+
+      infoBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        infoPopover.classList.toggle("hidden");
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!infoPopover.contains(e.target) && e.target !== infoBtn) {
+          infoPopover.classList.add("hidden");
+        }
+      });
+
+      // Allow testing any local outdoor audio file with the same dual-deck crossfader
+      customAudioInput.addEventListener("change", (e) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        const objectUrl = URL.createObjectURL(file);
+        TRACKS.custom.urls = [objectUrl];
+        creekLooper.loadTrack("custom");
+        activeMode = "custom";
+        isPlaying = true;
+        hasStartedOnce = true;
+        updateModeWeights();
+        syncUI();
+        statusText.textContent = file.name.slice(0, 18);
+      });
+
+      // Smooth master volume ramp loop (1.5s fade-in, 0.8s fade-out)
+      let prevAudioTime = performance.now();
+      function audioLoop(now) {
+        const dt = Math.min(0.1, (now - prevAudioTime) / 1000);
+        prevAudioTime = now;
+        const nowSec = now / 1000;
+
+        const targetMaster = isPlaying && !isMuted ? userVolume : 0;
+        const masterRate = targetMaster > currentMasterGain ? 1 / 1.5 : 1 / 0.8;
+
+        if (Math.abs(targetMaster - currentMasterGain) > 0.001) {
+          const delta = Math.sign(targetMaster - currentMasterGain) * masterRate * dt;
+          if (Math.abs(delta) >= Math.abs(targetMaster - currentMasterGain)) {
+            currentMasterGain = targetMaster;
+          } else {
+            currentMasterGain += delta;
+          }
+        } else {
+          currentMasterGain = targetMaster;
+        }
+
+        // Continuously sync crossfade weights with the 24-hour day-night cycle
+        if (isPlaying && (activeMode === "auto" || activeMode === "blended")) {
+          updateModeWeights();
+        }
+
+        creekLooper.tick(dt, currentMasterGain, nowSec);
+        rainforestLooper.tick(dt, currentMasterGain, nowSec);
+        nightLooper.tick(dt, currentMasterGain, nowSec);
+
+        requestAnimationFrame(audioLoop);
+      }
+
+      syncUI();
+      requestAnimationFrame(audioLoop);
+    })();
+  </script>
+</body>
+</html>
